@@ -64,8 +64,7 @@ namespace Viva.Service
                 return context.Books.ToList();
             }
         }
-
-
+        
         public Book InsertBook(Book book)
         {
             using (var context = base.GetDbContextInstance())
