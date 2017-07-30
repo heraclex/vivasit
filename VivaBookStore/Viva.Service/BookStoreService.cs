@@ -55,7 +55,7 @@ namespace Viva.Service
 
         #endregion
 
-        #region books
+        #region Books
 
         public List<Book> GetAllBooks()
         {
@@ -96,6 +96,21 @@ namespace Viva.Service
                 context.SaveChanges();
             }
             return book;
+        }
+
+        #endregion
+
+        #region Pictures
+
+        public Picture InsertPicture(Picture picture)
+        {
+            using (var context = new BookStoreDbContext(System.Configuration.ConfigurationManager.ConnectionStrings["VivaConnection"].ConnectionString))
+            {
+                picture.CreatedDate = DateTime.Now;
+                context.Pictures.Add(picture);
+                context.SaveChanges();
+            }
+            return picture;
         }
 
         #endregion

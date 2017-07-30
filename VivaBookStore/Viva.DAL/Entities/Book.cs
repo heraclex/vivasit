@@ -11,19 +11,24 @@ namespace Viva.DAL
         [StringLength(50, MinimumLength = 3)]
         public string AuthorName { get; set; }
 
-        public string BookDetails { get; set; }
+        public string Description { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         [StringLength(50, MinimumLength = 3)]
-        public string Press { get; set; }
+        public string ImageUrl { get; set; }
 
-        public string Rate { get; set; }
+        [Range(0, 5)]
+        public int Rate { get; set; }
 
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public int PictureId { get; set; }
+
+        public virtual Picture Picture { get; set; }
 
     }
 }

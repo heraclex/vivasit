@@ -60,6 +60,8 @@ namespace Viva.DAL.Initializers
             };
 
             categories.ForEach(c => context.Categories.Add(c));
+
+            context.SaveChanges();
         }
 
         private void CreateRoles(BookStoreDbContext context)
@@ -72,6 +74,8 @@ namespace Viva.DAL.Initializers
             };
 
             roles.ForEach(r => context.Roles.Add(r));
+
+            context.SaveChanges();
         }
 
         private void CreateCustomers(BookStoreDbContext context)
@@ -131,6 +135,8 @@ namespace Viva.DAL.Initializers
             };
 
             customers.ForEach(c => context.Customers.Add(c));
+
+            context.SaveChanges();
         }
 
         private void CreateCustomerRoleMappings(BookStoreDbContext context)
@@ -139,11 +145,13 @@ namespace Viva.DAL.Initializers
             var customerRoleMappings = new List<CustomerRoleMapping>
             {
                 new CustomerRoleMapping { CustomerId = 1, RoleId =1, CreatedDate =DateTime.Now, IsDeleted = false },
-                new CustomerRoleMapping { CustomerId = 2, RoleId =3, CreatedDate =DateTime.Now, IsDeleted = false },
+                new CustomerRoleMapping { CustomerId = 2, RoleId =2, CreatedDate =DateTime.Now, IsDeleted = false },
                 new CustomerRoleMapping { CustomerId = 3, RoleId =3, CreatedDate =DateTime.Now, IsDeleted = false }
             };
 
             customerRoleMappings.ForEach(map => context.CustomerRoleMappings.Add(map));
+
+            context.SaveChanges();
         }
     }
 }

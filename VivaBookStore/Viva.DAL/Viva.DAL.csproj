@@ -58,6 +58,7 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\PaymentStatus.cs" />
+    <Compile Include="Entities\Picture.cs" />
     <Compile Include="Entities\Recommendation.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Initializers\CreateDatabaseIfNotExists.cs" />
