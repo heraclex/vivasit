@@ -1,0 +1,155 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Viva.WebApp.Register" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <form class="form-horizontal" runat="server">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtEmail" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-6">
+                <asp:RequiredFieldValidator ID="RequirefieldEmail" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtEmail" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Pls input right email format" ControlToValidate="txtEmail" ForeColor="#CC0000" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtPassword" type="password" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldPass" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPassword" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Re-Password</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtRePassword" ype="password" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+             <div class="col-sm-4">
+                 <asp:RequiredFieldValidator ID="RequirefieldRepass" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtRePassword" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+                 <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password does not match" ForeColor="#CC0000" ControlToCompare="txtPassword" ControlToValidate="txtRePassword"></asp:CompareValidator>
+             </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtFirstName" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequireFirstName" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtFirstName" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">SurName</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtSurName" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldSurName" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtSurName" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Street Address</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtStreet" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldStreet" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtStreet" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Surburb</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtSuburb" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldSurburb" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtSuburb" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">City</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtCity" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldCity" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtCity" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Zipcode</label>
+           <div class="col-sm-4">
+                <asp:TextBox ID="txtZipcode" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldZip" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtZipcode" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Phone Contact</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtPhone" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldPhone" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPhone" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Company Contact</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtCompany" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldCompany" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtCompany" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Your train goals?</label>
+            <div class="col-sm-4">
+                <asp:CheckBoxList ID="chklistTrainGoals" runat="server">
+                    <asp:ListItem Value="Weight Loss">  Weight Loss</asp:ListItem>
+                    <asp:ListItem Value="Stress Relief">  Stress Relief</asp:ListItem>
+                    <asp:ListItem Value="Improve Flexibility and Balanc">  Improve Flexibility and Balance</asp:ListItem>
+                </asp:CheckBoxList>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">How did you hear about us?</label>
+            <div class="col-sm-2">
+                <asp:DropDownList CssClass="form-control" ID="dropHear" runat="server">
+                    <asp:ListItem>Website</asp:ListItem>
+                    <asp:ListItem>Friends</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>  
+        
+         <div class="form-group">
+            <label class="col-sm-2 control-label">How did you hear about us?</label>
+            <div class="col-sm-10">
+                <asp:CheckBoxList ID="chklistContact" runat="server">
+                            <asp:ListItem Value="Phone">Phone</asp:ListItem>
+                            <asp:ListItem Value="Email">Email</asp:ListItem>
+                            <asp:ListItem Value="Letter">Letter</asp:ListItem>
+                        </asp:CheckBoxList>
+            </div>
+        </div>  
+        
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Register</button>
+            </div>
+        </div>
+    </form>
+</asp:Content>
