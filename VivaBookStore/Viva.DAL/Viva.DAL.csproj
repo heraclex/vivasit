@@ -54,7 +54,6 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\OrderStatus.cs" />
     <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\CustomerRoleMapping.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\PaymentStatus.cs" />

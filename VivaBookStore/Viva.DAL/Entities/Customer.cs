@@ -34,5 +34,9 @@ namespace Viva.DAL.Entities
         public string CardExpiredDate { get; set; }
 
         public bool Subscribe { get; set; }
+
+        public int RoleId { get; set; }
+
+        public virtual Role Role { get; set; }
     }
 }

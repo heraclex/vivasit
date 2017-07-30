@@ -16,9 +16,7 @@ namespace Viva.DAL
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Role> Roles { get; set; }
-
-        public DbSet<CustomerRoleMapping> CustomerRoleMappings { get; set; }
-
+        
         public DbSet<Recommendation> Recommendations { get; set; }
 
         public DbSet<Picture> Pictures { get; set; }

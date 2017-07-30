@@ -43,7 +43,6 @@ namespace Viva.DAL.Initializers
             this.CreateCategories(context);
             this.CreateRoles(context);
             this.CreateCustomers(context);
-            this.CreateCustomerRoleMappings(context);
         }
 
         private void CreateCategories(BookStoreDbContext context)
@@ -97,7 +96,9 @@ namespace Viva.DAL.Initializers
                     CreditCardNumber="123....90",
                     CardExpiredDate="12/20",
                     CreatedDate =DateTime.Now,
-                    IsDeleted = false},
+                    IsDeleted = false,
+                    RoleId = 1
+                },
 
                 new Customer {
                     UserName="tiana.mohemet",
@@ -114,7 +115,9 @@ namespace Viva.DAL.Initializers
                     CreditCardNumber="333....90",
                     CardExpiredDate="12/20",
                     CreatedDate =DateTime.Now,
-                    IsDeleted = false},
+                    IsDeleted = false,
+                    RoleId = 1
+                },
 
                 new Customer {
                     UserName="linda.ran",
@@ -131,27 +134,15 @@ namespace Viva.DAL.Initializers
                     CreditCardNumber="9999....99",
                     CardExpiredDate="12/20",
                     CreatedDate =DateTime.Now,
-                    IsDeleted = false},
+                    IsDeleted = false,
+                    RoleId = 1
+                },
             };
 
             customers.ForEach(c => context.Customers.Add(c));
 
             context.SaveChanges();
         }
-
-        private void CreateCustomerRoleMappings(BookStoreDbContext context)
-        {
-            // Add Customer role
-            var customerRoleMappings = new List<CustomerRoleMapping>
-            {
-                new CustomerRoleMapping { CustomerId = 1, RoleId =1, CreatedDate =DateTime.Now, IsDeleted = false },
-                new CustomerRoleMapping { CustomerId = 2, RoleId =2, CreatedDate =DateTime.Now, IsDeleted = false },
-                new CustomerRoleMapping { CustomerId = 3, RoleId =3, CreatedDate =DateTime.Now, IsDeleted = false }
-            };
-
-            customerRoleMappings.ForEach(map => context.CustomerRoleMappings.Add(map));
-
-            context.SaveChanges();
-        }
+        
     }
 }

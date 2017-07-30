@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageBook.aspx.cs" Inherits="Viva.WebApp.Admin.ManageBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Manage Book
+            </h1>
+        </div>
+    </div>
+
     <form id="manageBookForm" runat="server" class="form-horizontal">
 
         <div class="panel panel-default">
@@ -10,7 +18,7 @@
             <div class="panel-body">
                 <!--Book Name-->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Email</label>
+                    <label class="col-sm-2 control-label">Book Name</label>
                     <div class="col-sm-10">
                         <asp:TextBox ID="txtBookName" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                     </div>
@@ -26,7 +34,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Description</label>
                     <div class="col-sm-10">
-                        <textarea ID="txtDescription" cols="20" rows="2" ClientIDMode="Static" class="form-control" runat="server"></textarea>
+                        <textarea id="txtDescription" cols="20" rows="2" clientidmode="Static" class="form-control" runat="server"></textarea>
                     </div>
                 </div>
                 <!--Price-->
@@ -42,15 +50,19 @@
                     <div class="col-sm-5">
                         <asp:FileUpload ID="fileUploadImage" ClientIDMode="Static" runat="server" />
                     </div>
-                    <div class="col-sm-2">
-                        <asp:Button ID="btnUpload" ClientIDMode="Static" runat="server" Text="Upload" OnClick="btnImgUpload_Click" />
-                    </div>
                 </div>
                 <!--Category-->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-10">
-                        <asp:DropDownList ID="ddCategory" ClientIDMode="Static" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddCategory" class="form-control" ClientIDMode="Static" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                <!--Buttons-->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="Create" OnClick="btnSave_Click" />
+                        <asp:Button ID="btnCancel" class="btn btn-default" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
                     </div>
                 </div>
             </div>

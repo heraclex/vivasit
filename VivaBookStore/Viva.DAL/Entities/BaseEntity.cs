@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Viva.DAL
+namespace Viva.DAL.Entities
 {
     public class BaseEntity
     {
