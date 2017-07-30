@@ -11,8 +11,6 @@ namespace Viva.Service
     {
         private string ConnectionString = string.Empty;
 
-        private BookStoreDbContext _dbContext;        
-
         protected BaseService()
         {
             var vivaConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["VivaConnection"];
@@ -24,16 +22,7 @@ namespace Viva.Service
 
         protected BookStoreDbContext GetDbContextInstance()
         {
-            if (this._dbContext == null)
-            {
-                if (string.IsNullOrEmpty(ConnectionString))
-                {
-                    throw new Exception("Missing Connection String");
-                }
-                this._dbContext = new BookStoreDbContext(this.ConnectionString);
-            }
-            // Init dbContext
-            return this._dbContext;
+            return new BookStoreDbContext(this.ConnectionString);
         }
     }
 }

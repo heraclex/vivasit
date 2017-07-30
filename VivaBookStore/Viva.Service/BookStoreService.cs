@@ -69,7 +69,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                // let EF to know that Add  a new Book
+                book.CreatedDate = DateTime.Now;
                 context.Books.Add(book);
                 context.SaveChanges();
             }

@@ -1,7 +1,7 @@
 ﻿using Viva.DAL.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace Viva.DAL
+namespace Viva.DAL.Entities
 {
     public class Book : BaseEntity
     {
@@ -15,9 +15,6 @@ namespace Viva.DAL
 
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-
-        [StringLength(50, MinimumLength = 3)]
-        public string ImageUrl { get; set; }
 
         [Range(0, 5)]
         public int Rate { get; set; }
