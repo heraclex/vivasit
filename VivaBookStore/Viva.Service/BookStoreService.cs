@@ -57,11 +57,19 @@ namespace Viva.Service
 
         #region Books
 
-        public List<Book> GetAllBooks()
+        public List<Book> GetAllBooks(bool includePicture)
         {
             using (var context = base.GetDbContextInstance())
             {
-                return context.Books.ToList();
+                if (includePicture)
+                {
+                    return context.Books.Include(x => x.Picture).ToList();
+                }
+                else
+                {
+                    return context.Books.ToList();
+                }
+                
             }
         }
         

@@ -52,8 +52,8 @@
                     <%{ %>
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <asp:Image ID="Image1" runat="server" />
-                                <img src="Content/images/uploaded/books/book1.jpg" alt="">
+                                <img style="height: 200px; width: 100%; display: block;"
+                                    src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="<%=book.BookName %>">
                                 <div class="caption">
                                     <h4 class="pull-right">$<%=book.Price %></h4>
                                     <h4><a href="#"><%=book.BookName %></a></h4>
