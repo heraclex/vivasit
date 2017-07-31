@@ -49,13 +49,13 @@ namespace Viva.DAL.Initializers
         {
             var categories = new List<Category>
             {
-                new Category {CategoryName="Business",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Category {CategoryName="Cookery",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Category {CategoryName="Fiction",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Category {CategoryName="Non Fiction",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Category {CategoryName="Leisure",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Category {CategoryName="Travel",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Category {CategoryName="Spritual",CreatedDate=DateTime.Now,IsDeleted = false}
+                new Category {CategoryName="Business" },
+                new Category {CategoryName="Cookery"},
+                new Category {CategoryName="Fiction"},
+                new Category {CategoryName="Non Fiction"},
+                new Category {CategoryName="Leisure"},
+                new Category {CategoryName="Travel"},
+                new Category {CategoryName="Spritual"}
             };
 
             categories.ForEach(c => context.Categories.Add(c));
@@ -67,9 +67,9 @@ namespace Viva.DAL.Initializers
         {
             var roles = new List<Role>
             {
-                new Role {RoleName="SysAdmin",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Role {RoleName="Admin",CreatedDate=DateTime.Now,IsDeleted = false},
-                new Role {RoleName="User",CreatedDate=DateTime.Now,IsDeleted = false},
+                new Role {RoleName="SysAdmin"},
+                new Role {RoleName="Admin"},
+                new Role {RoleName="User"},
             };
 
             roles.ForEach(r => context.Roles.Add(r));
@@ -92,11 +92,11 @@ namespace Viva.DAL.Initializers
                     Country ="NZ",
                     EmailAddress ="ntthanhthao@outlook.com",
                     PhoneNumber="+64 229009000",
+                    HearUs= "Website",
+                    HowContactYou="Phone",
                     Subscribe=false,
                     CreditCardNumber="123....90",
                     CardExpiredDate="12/20",
-                    CreatedDate =DateTime.Now,
-                    IsDeleted = false,
                     RoleId = 1
                 },
 
@@ -114,8 +114,6 @@ namespace Viva.DAL.Initializers
                     Subscribe=false,
                     CreditCardNumber="333....90",
                     CardExpiredDate="12/20",
-                    CreatedDate =DateTime.Now,
-                    IsDeleted = false,
                     RoleId = 1
                 },
 
@@ -133,8 +131,6 @@ namespace Viva.DAL.Initializers
                     Subscribe=false,
                     CreditCardNumber="9999....99",
                     CardExpiredDate="12/20",
-                    CreatedDate =DateTime.Now,
-                    IsDeleted = false,
                     RoleId = 1
                 },
             };

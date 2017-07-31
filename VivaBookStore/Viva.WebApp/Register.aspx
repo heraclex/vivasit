@@ -63,17 +63,7 @@
                 <asp:RequiredFieldValidator ID="RequirefieldStreet" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtStreet" ForeColor="#CC0000"></asp:RequiredFieldValidator>
             </div>
         </div>
-
-         <div class="form-group">
-            <label class="col-sm-2 control-label">Surburb</label>
-            <div class="col-sm-4">
-                <asp:TextBox ID="txtSuburb" class="form-control" runat="server" ></asp:TextBox>
-            </div>
-            <div class="col-sm-4">
-                <asp:RequiredFieldValidator ID="RequirefieldSurburb" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtSuburb" ForeColor="#CC0000"></asp:RequiredFieldValidator>
-            </div>
-        </div>
-
+                 
          <div class="form-group">
             <label class="col-sm-2 control-label">City</label>
             <div class="col-sm-4">
@@ -81,6 +71,16 @@
             </div>
             <div class="col-sm-4">
                 <asp:RequiredFieldValidator ID="RequirefieldCity" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtCity" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Country</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtCountry" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-4">
+                <asp:RequiredFieldValidator ID="RequirefieldSurburb" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtCountry" ForeColor="#CC0000"></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -104,26 +104,8 @@
             </div>
         </div>
 
-         <div class="form-group">
-            <label class="col-sm-2 control-label">Company Contact</label>
-            <div class="col-sm-4">
-                <asp:TextBox ID="txtCompany" class="form-control" runat="server" ></asp:TextBox>
-            </div>
-            <div class="col-sm-4">
-                <asp:RequiredFieldValidator ID="RequirefieldCompany" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtCompany" ForeColor="#CC0000"></asp:RequiredFieldValidator>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Your train goals?</label>
-            <div class="col-sm-4">
-                <asp:CheckBoxList ID="chklistTrainGoals" runat="server">
-                    <asp:ListItem Value="Weight Loss">  Weight Loss</asp:ListItem>
-                    <asp:ListItem Value="Stress Relief">  Stress Relief</asp:ListItem>
-                    <asp:ListItem Value="Improve Flexibility and Balanc">  Improve Flexibility and Balance</asp:ListItem>
-                </asp:CheckBoxList>
-            </div>
-        </div>
+                          
+      
 
         <div class="form-group">
             <label class="col-sm-2 control-label">How did you hear about us?</label>
@@ -133,6 +115,7 @@
                     <asp:ListItem>Friends</asp:ListItem>
                 </asp:DropDownList>
             </div>
+
         </div>  
         
          <div class="form-group">
@@ -143,12 +126,15 @@
                             <asp:ListItem Value="Email">Email</asp:ListItem>
                             <asp:ListItem Value="Letter">Letter</asp:ListItem>
                         </asp:CheckBoxList>
+                <div class="col-sm-4">
+                <asp:Label ID="lblContactError" runat="server" Text="" BorderColor="#CC0000"></asp:Label>   
+            </div>
             </div>
         </div>  
         
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Register</button>
+                <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" />
             </div>
         </div>
     </form>

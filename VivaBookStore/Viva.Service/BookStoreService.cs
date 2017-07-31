@@ -69,7 +69,6 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                book.CreatedDate = DateTime.Now;
                 context.Books.Add(book);
                 context.SaveChanges();
             }
@@ -106,7 +105,6 @@ namespace Viva.Service
         {
             using (var context = new BookStoreDbContext(System.Configuration.ConfigurationManager.ConnectionStrings["VivaConnection"].ConnectionString))
             {
-                picture.CreatedDate = DateTime.Now;
                 context.Pictures.Add(picture);
                 context.SaveChanges();
             }

@@ -29,6 +29,10 @@ namespace Viva.DAL.Entities
 
         public string EmailAddress { get; set; }
 
+        public string HowContactYou { get; set; }
+
+        public string HearUs { get; set; }
+
         public string CreditCardNumber { get; set; }
 
         public string CardExpiredDate { get; set; }
