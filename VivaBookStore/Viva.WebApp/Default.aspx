@@ -2,7 +2,16 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                    <ul class="Login">
+                        <li>
+                            <a class=" pull-right" href="Register.aspx" >Register</a>
+                        </li>
+                        <li>
+                            <a class=" pull-right" href="#" data-toggle="modal" data-target="#LoginModal">Login</a>
+                        </li>
+                    </ul>
+                </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
@@ -56,24 +65,57 @@
                                     src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="<%=book.BookName %>">
                                 <div class="caption">
                                     <h4 class="pull-right">$<%=book.Price %></h4>
-                                    <h4><a href="#"><%=book.BookName %></a></h4>
+                                    <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>"><%=book.BookName %></a></h4>
                                     <p><%=book.Description %></p>
+                                    
+                                        
+                                    
                                 </div>
+                      
+
+
                                 <div class="ratings">
                                     <p class="pull-right">15 reviews</p>
                                     <p>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
+                                        <a href="ProductDetail.aspx?bookid=<%=book.Id %>" >Add To Card</a>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     <%} %>
                 </div>
+                <div class="modal fade" id="LoginModal" tabindex="-1"
+                    role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;
+                                    </span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Login</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <input type="text" class="form-control" placeholder="Email" />
+                                </div>
+                                <p>
+                                </p>
+                                <div class="input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <input type="text" class="form-control" placeholder="Password" />
+                                </div>
+                                <p>
+                                </p>
+                                <button type="button" class="btn-primary">
+                                    Login</button>
+                                
+                            </div>
+                            
 
+                        </div>
+                </div>
+            </div>
             </div>
 
         </div>

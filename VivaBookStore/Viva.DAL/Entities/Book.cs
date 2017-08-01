@@ -25,6 +25,8 @@ namespace Viva.DAL.Entities
 
         public int PictureId { get; set; }
 
+        public int QuantityInUnit { get; set; }
+
         public virtual Picture Picture { get; set; }
 
     }

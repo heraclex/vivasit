@@ -39,6 +39,8 @@ namespace Viva.DAL.Entities
 
         public bool Subscribe { get; set; }
 
+        public bool Active { get; set; }
+
         public int RoleId { get; set; }
 
         public virtual Role Role { get; set; }

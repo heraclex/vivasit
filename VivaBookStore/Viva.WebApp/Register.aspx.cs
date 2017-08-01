@@ -46,10 +46,12 @@ namespace Viva.WebApp
                 newCustomer.PhoneNumber = txtPhone.Text;
                 newCustomer.HowContactYou = chklistContact.Text;
                 newCustomer.HearUs = dropHear.Text;
-
-                // add new book to databaes
+                newCustomer.RoleId = 3;
+                // add new customer to databaes
                 this.Service.InsertCustomer(newCustomer);
+                lblMessage.Text = "Register sucessfully";
             }
+            //Server.Transfer("Default.aspx", true);
         }
     }
 }

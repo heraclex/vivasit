@@ -22,6 +22,8 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Username</th>
+                        <th>Active</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +34,9 @@
                         <td><%=customer.FirstName %></td>
                         <td><%=customer.LastName %></td>
                         <td><%=customer.UserName %></td>
-                    </tr>
+                        <td><%=customer.Active %></td>
+                        <h4><a href="?customerid=<%=customer.Id %>"><%=customer.Active %></a></h4>
+                       
                     <%} %>
                 </tbody>
             </table>

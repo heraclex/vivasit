@@ -4,35 +4,26 @@
     <!-- Page Content -->
     <div class="container">
 
-        <!-- Portfolio Item Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Portfolio Item
-                    <small>Item Subheading</small>
-                </h1>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Portfolio Item Row -->
         <div class="row">
 
             <div class="col-md-4">
                 <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+               
             </div>
 
             <div class="col-md-8">
-                <h3>Book Name</h3>
-                <p>Book.Description</p>
-                <h3>Price</h3>
-                <a class="btn btn-submit" href="#">Add to Cart</a>
+                <h3><%=book.BookName %></h3>
+                <h3><%=book.AuthorName %></h3>
+                <p><%=book.Description %></p>
+                <h3><%=book.Price %></h3>
+                <h3><%=book.QuantityInUnit %></h3>
+                <h5><a href="ShoppingCart.aspx?bookid=<%=book.Id %>">Add to Cart</a></h5>
             </div>
 
         </div>
+        </div>
 
-        <!-- /.row -->
-      
-          
+        <!-- /.row -->           
                 
               
                

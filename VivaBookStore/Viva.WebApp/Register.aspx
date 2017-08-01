@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <form class="form-horizontal" runat="server">
         <div class="form-group">
+            <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+        </div>
+        <div class="form-group">
             <label class="col-sm-2 control-label">Email</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" ></asp:TextBox>

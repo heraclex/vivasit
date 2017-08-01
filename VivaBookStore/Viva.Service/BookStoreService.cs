@@ -53,6 +53,15 @@ namespace Viva.Service
             return customer;
         }
 
+        public Customer GetCustomerByID(int customerid)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var result = context.Customers.First(x => x.Id == customerid);
+                return result;
+            }
+        }
+
         #endregion
 
         #region Books
@@ -72,7 +81,15 @@ namespace Viva.Service
                 
             }
         }
-        
+        public Book GetBookByID (int bookid)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var result = context.Books.First(x => x.Id == bookid);
+                return result;
+            }
+        }
+
         public Book InsertBook(Book book)
         {
             using (var context = base.GetDbContextInstance())

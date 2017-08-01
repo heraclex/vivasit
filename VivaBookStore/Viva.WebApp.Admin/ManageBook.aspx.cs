@@ -46,6 +46,7 @@ namespace Viva.WebApp.Admin
                 // assign picture to this new book
                 newBook.PictureId = pic.Id;
                 newBook.Price = Convert.ToDecimal(txtPrice.Text);
+                newBook.QuantityInUnit = Convert.ToInt32(txtQuantity.Text);
                 newBook.Rate = 1;
                 newBook.BookName = txtBookName.Text;
 

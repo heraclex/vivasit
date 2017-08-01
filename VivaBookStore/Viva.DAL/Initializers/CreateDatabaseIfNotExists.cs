@@ -95,9 +95,11 @@ namespace Viva.DAL.Initializers
                     HearUs= "Website",
                     HowContactYou="Phone",
                     Subscribe=false,
+                    Active = true,
                     CreditCardNumber="123....90",
                     CardExpiredDate="12/20",
                     RoleId = 1
+                   
                 },
 
                 new Customer {
@@ -112,6 +114,7 @@ namespace Viva.DAL.Initializers
                     EmailAddress ="tiana.mohemet@outlook.com",
                     PhoneNumber="+64 2290099999",
                     Subscribe=false,
+                    Active = true,
                     CreditCardNumber="333....90",
                     CardExpiredDate="12/20",
                     RoleId = 1
@@ -129,6 +132,7 @@ namespace Viva.DAL.Initializers
                     EmailAddress ="linda.ran@outlook.com",
                     PhoneNumber="+64 22900991239",
                     Subscribe=false,
+                    Active = true,
                     CreditCardNumber="9999....99",
                     CardExpiredDate="12/20",
                     RoleId = 1

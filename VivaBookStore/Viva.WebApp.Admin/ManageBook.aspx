@@ -44,6 +44,12 @@
                         <asp:TextBox ID="txtPrice" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Quantity</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtQuantity" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                    </div>
+                </div>
                 <!--ImageUrl-->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Image</label>
