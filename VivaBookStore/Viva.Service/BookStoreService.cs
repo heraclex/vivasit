@@ -59,6 +59,21 @@ namespace Viva.Service
                 return result;
             }
         }
+
+        /// <summary>
+        /// For Login Service to get by user/pass
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
+        public Customer GetCustomerByUserName(string username)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var result = context.Customers.FirstOrDefault(x => x.UserName == username);
+                return result;
+            }
+        }
         
         public List<Book> GetAllBooks(bool includePicture)
         {

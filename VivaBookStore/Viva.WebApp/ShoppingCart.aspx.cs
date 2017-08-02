@@ -18,39 +18,46 @@ namespace Viva.WebApp
         {
             if (!Page.IsPostBack)
             {
-                // When the first time load to this page
-                var bookIdQueryString = Request.QueryString["bookid"];
-                var customerId = 1;//(int)HttpContext.Current.Session["customerid"];
-                if (bookIdQueryString != null)
+                // When the first time load to this page                
+                if (HttpContext.Current.Session["currentuser"] == null)
                 {
-                    var bookid = 0;
-                    // Try to get bookid from QueryString 
-                    // http://localhost:9090/ShopingCart?bookid=123
-
-                    var isConvertToIntSuccess = Int32.TryParse(bookIdQueryString, out bookid);
-                    if (isConvertToIntSuccess == true && bookid > 0)
-                    {
-                        var book = this.service.GetBookByID(bookid);
-                        this.CurrentOrder = this.service.GetCurrentOrder(customerId);
-                        if (this.CurrentOrder != null)
-                        {
-                            this.UpdateOrderDetails(this.CurrentOrder, book);
-                        }
-                        else
-                        {
-                            this.InsertNewOrder(customerId, book);
-                        }
-                    }
+                    Server.MapPath("Default.aspx");
                 }
                 else
                 {
-                    this.CurrentOrder = this.service.GetCurrentOrder(customerId);
-                    // If User has no Shopping cart, return to Defautl page
-                    if (this.CurrentOrder == null)
+                    var customer = (Customer)HttpContext.Current.Session["currentuser"];
+                    var bookIdQueryString = Request.QueryString["bookid"];
+                    if (bookIdQueryString != null)
                     {
-                        Server.MapPath("Default.aspx");
+                        var bookid = 0;
+                        // Try to get bookid from QueryString 
+                        // http://localhost:9090/ShopingCart?bookid=123
+
+                        var isConvertToIntSuccess = Int32.TryParse(bookIdQueryString, out bookid);
+                        if (isConvertToIntSuccess == true && bookid > 0)
+                        {
+                            var book = this.service.GetBookByID(bookid);
+                            this.CurrentOrder = this.service.GetCurrentOrder(customer.Id);
+                            if (this.CurrentOrder != null)
+                            {
+                                this.UpdateOrderDetails(this.CurrentOrder, book);
+                            }
+                            else
+                            {
+                                this.InsertNewOrder(customer.Id, book);
+                            }
+                        }
                     }
-                }
+                    else
+                    {
+                        this.CurrentOrder = this.service.GetCurrentOrder(customer.Id);
+                        // If User has no Shopping cart, return to Defautl page
+                        if (this.CurrentOrder == null)
+                        {
+                            Server.MapPath("Default.aspx");
+                        }
+                    }
+                }                
             }
         }
 

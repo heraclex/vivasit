@@ -39,6 +39,7 @@ namespace Viva.DAL
         {
             Database.SetInitializer(new Initializers.CreateDatabaseIfNotExists());
             this.Configuration.AutoDetectChangesEnabled = true;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

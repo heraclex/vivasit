@@ -20,7 +20,11 @@
     <link href="Content/Site.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.10.2.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+
+    <script src="Scripts/Pages/login.js"></script>
+    <script src="Scripts/Pages/logout.js"></script>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,60 +34,134 @@
     <![endif]-->
 </head>
 <body>
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#" >
-                        <img src="Content/images/logo.png" style="width:110px; height:30px"/>
-                    </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#LoginModal">Login</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        
-        
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <hr>
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; Viva Corp 2017</p>
-                    </div>
-                </div>
-            </footer>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="Content/images/logo.png" style="width: 110px; height: 30px" />
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <%--<li>
+                        <a href="#" data-toggle="modal" data-target="#LoginModal">Login</a>
+                    </li>--%>
+                </ul>
+
+                <!--Login Form-->
+                <!-- https://bootsnipp.com/snippets/featured/fancy-navbar-login-sign-in-form -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!--User is not login-->
+                    <% var displayLogin = string.Empty;
+                        var displayLogout = string.Empty;
+                        var customerFirstName = string.Empty;
+                        if (HttpContext.Current.Session["currentuser"] == null) {
+                            displayLogin = "block";
+                            displayLogout = "none";
+                        } else{ //User is already login
+                            displayLogin = "none";
+                            displayLogout = "block";
+                            var customer = (Viva.DAL.Entities.Customer)HttpContext.Current.Session["currentuser"];
+                            customerFirstName = customer.FirstName;} %>
+
+                    <li class="dropdown" id="logindropdown" style="display:<%=displayLogin%>;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <%--Login via							
+                                        <div class="social-buttons">
+                                            <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>Facebook</a>
+                                            <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i>Twitter</a>
+                                        </div>or--%>								
+                                        <form class="form" role="form" method="post" action="VivaWebService.asmx/Login" accept-charset="UTF-8">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="User Name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                                                <div class="help-block text-right"><a href="javascript:;">Forget the password ?</a></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button id="btnSignIn" class="btn btn-primary btn-block">Sign in</button>
+                                            </div>
+                                            <div class="form-group" id="progress-bar" style="display: none;">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped active" role="progressbar" 
+                                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="10" style="width:100%">
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"/>  keep me logged-in											
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="bottom text-center">
+                                        New here ? <a href="Register.aspx"><b>Join Us</b></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="navbar-text" id="helloText" style="display:<%=displayLogout%>;">Hi <%=customerFirstName %></p>
+                    </li>
+                    <li id="logoutText" style="display:<%=displayLogout%>;"><a href="javascript:;" id="signout-link">Sign Out</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <div class="container body-content">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <div class="container">
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Viva Corp 2017</p>
+                </div>
+            </div>
+        </footer>
+    </div>
     <!-- /.container -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Binding click event on button Sign In
+            $("#btnSignIn").click(login);
+            $("#signout-link").click(logout);
+        });
+    </script>
+
 </body>
 </html>

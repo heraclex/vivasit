@@ -2,16 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                    <ul class="Login">
-                        <li>
-                            <a class=" pull-right" href="Register.aspx" >Register</a>
-                        </li>
-                        <li>
-                            <a class=" pull-right" href="#" data-toggle="modal" data-target="#LoginModal">Login</a>
-                        </li>
-                    </ul>
-                </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
