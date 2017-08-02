@@ -20,7 +20,7 @@ namespace Viva.WebApp.Admin
             this.Customers = this.Service.GetAllCustomers();
 
         }
-               
+
 
         protected void Active(int customerid)
         {
@@ -35,4 +35,5 @@ namespace Viva.WebApp.Admin
                 }
             }
         }
+    }
 }

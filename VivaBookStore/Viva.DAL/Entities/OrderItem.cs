@@ -8,7 +8,6 @@ namespace Viva.DAL.Entities
 {
     public class OrderItem : BaseEntity
     {
-
         public int BookId { get; set; }
 
         public int OrderId { get; set; }

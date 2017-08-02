@@ -11,8 +11,6 @@ namespace Viva.Service
 {
     public class BookStoreService : BaseService
     {
-        #region Customers
-
         public List<Customer> GetAllCustomers()
         {
             using (var context = base.GetDbContextInstance())
@@ -61,11 +59,7 @@ namespace Viva.Service
                 return result;
             }
         }
-
-        #endregion
-
-        #region Books
-
+        
         public List<Book> GetAllBooks(bool includePicture)
         {
             using (var context = base.GetDbContextInstance())
@@ -121,11 +115,7 @@ namespace Viva.Service
             }
             return book;
         }
-
-        #endregion
-
-        #region Pictures
-
+        
         public Picture InsertPicture(Picture picture)
         {
             using (var context = new BookStoreDbContext(System.Configuration.ConfigurationManager.ConnectionStrings["VivaConnection"].ConnectionString))
@@ -135,8 +125,6 @@ namespace Viva.Service
             }
             return picture;
         }
-
-        #endregion
 
         public List<Category> GetAllCategories()
         {
@@ -179,6 +167,67 @@ namespace Viva.Service
             }
         }
 
+        public Order InsertOrder(Order newOrder)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                context.Orders.Add(newOrder);
+                context.SaveChanges();
+            }
+            return newOrder;
+        }
 
+        public Order UpdateOrder(Order order)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                // Update Order
+                var orderEntry = context.Entry(order);  // Gets the entry for entity inside context
+                orderEntry.State = EntityState.Modified; // Tell EF this entity has been modified
+
+                // Update Order Details
+                foreach (var orderItem in order.OrderItems)
+                {
+                    var orderItemEntry = context.Entry(orderItem);
+
+                    if (orderItem.Id > 0)
+                    {
+                        orderItemEntry.State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        orderItemEntry.State = EntityState.Added;
+                    }
+                    
+                }
+
+                context.SaveChanges();
+            }
+            return order;
+        }
+
+        public List<Order> GetCompletedOrders(int customerId)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Orders.Where(x=>
+                x.CustomerId == customerId
+                && x.OrderStatusId == (int)OrderStatus.Complete
+                && x.PaymentStatusId == (int)PaymentStatus.Paid).ToList();
+            }
+        }
+
+        public Order GetCurrentOrder(int customerId)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                // Return the current Order (ShoppingCartItems)
+                // Can return null in case customer don't have any orders
+                return context.Orders.Where(x => 
+                x.CustomerId == customerId
+                && x.OrderStatusId == (int)OrderStatus.Pending
+                && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x=>x.OrderItems).FirstOrDefault();
+            }
+        }
     }
 }

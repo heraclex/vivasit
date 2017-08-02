@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="Viva.WebApp.ShoppingCart" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <table id="cart" class="table table-hover table-condensed">
         <thead>
@@ -12,21 +13,22 @@
             </tr>
         </thead>
         <tbody>
+            <% foreach (var orderItem in this.CurrentOrder.OrderItems) %>
+            <%{ %>
+            <%var bookDetail = this.service.GetBookByID(orderItem.BookId); %>
             <tr>
                 <td data-th="Product">
                     <div class="row">
-                        <%--<div class="col-sm-2 hidden-xs">
-                            <img src="http://placehold.it/100x100" alt="..." class="img-responsive" />
-                        </div>--%>
                         <div class="col-sm-10">
-                            <h4 class="nomargin">Product 1</h4>
-                                                    </div>
+                            <h4 class="nomargin"><%=bookDetail.BookName %></h4>
+                        </div>
                     </div>
                 </td>
-                <td data-th="InSTock">50</td>
-                               <td data-th="Price">$1.99</td>
+                <td data-th="InSTock"><%=bookDetail.QuantityInUnit %></td>
+                <td data-th="Price">$ <%=bookDetail.Price %></td>
                 <td data-th="Quantity">
-                    <input type="number" class="form-control text-center" value="1">
+                    <input id="txtQuantity" type="number" class="form-control text-center" 
+                        value="<%=orderItem.Quantity %>" />
                 </td>
                 <td data-th="Subtotal" class="text-center">1.99</td>
                 <td class="actions" data-th="">
@@ -34,10 +36,11 @@
                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                 </td>
             </tr>
+            <%} %>
         </tbody>
         <tfoot>
             <tr class="visible-xs">
-                <td class="text-center"><strong>Total 1.99</strong></td>
+                <td class="text-center"><strong>Total $<%=this.CurrentOrder.TotalPrice %></strong></td>
             </tr>
             <tr>
                 <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i>Continue Shopping</a></td>
