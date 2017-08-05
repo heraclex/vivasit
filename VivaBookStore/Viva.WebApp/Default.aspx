@@ -5,9 +5,13 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
+                    <a href="Default.aspx" class="list-group-item">All</a>
+                    <a href="Default.aspx" class="list-group-item">New Release</a>
                     <% foreach (var category in this.Categories)
                         {%>
-                    <a href="#" class="list-group-item"><%=category.CategoryName %></a>
+                    <a href="Default.aspx?categoryId=<%=category.Id%>" class="list-group-item">
+                        <%=category.CategoryName %>
+                    </a>
                     <%} %>
                 </div>
             </div>

@@ -17,8 +17,30 @@ namespace Viva.WebApp
         private readonly BookStoreService service = new BookStoreService();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Categories = this.service.GetAllCategories();
-            this.Books = this.service.GetAllBooks(true);
+            // First time page load
+            if (!Page.IsPostBack)
+            {
+                this.Categories = this.service.GetAllCategories();
+                this.Books = this.service.GetAllBooks(true);
+            }
+            else
+            {
+                // Filter By CategoryId
+                var categoryIdFromQueryString = Request.QueryString["categoryId"];
+                if (string.IsNullOrEmpty(categoryIdFromQueryString))
+                {
+                    this.Books = this.service.GetAllBooks(true);
+                }
+                else
+                {
+                    var categoryId = 0;
+                    var isConvertToIntSuccess = Int32.TryParse(categoryIdFromQueryString, out categoryId);
+                    if (isConvertToIntSuccess && categoryId > 0)
+                    {
+                        //this.Books = this.service.
+                    }
+                }
+            }            
         }
 
         protected string GetPictureUrlFromBytes(byte[] pictureBinary)
