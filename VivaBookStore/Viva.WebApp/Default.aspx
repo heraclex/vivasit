@@ -57,7 +57,7 @@
                                     <h4 class="pull-right">$<%=book.Price %></h4>
                                     <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>"><%=book.BookName %></a></h4>
                                     <p><%=book.Description %></p>
-                                    
+                                    <%--  --%>
                                         
                                     
                                 </div>

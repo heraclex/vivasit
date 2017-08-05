@@ -35,8 +35,13 @@ function login(event) {
                     // Login Success
                     $('#logindropdown').hide();
                     $('#logoutText').show();
+                    
                     $('#helloText').show();
                     $('#helloText').html('Hi ' + result.d.FirstName);
+
+                    $('#ChangeProfile > a').attr("href", "ChangeProfile.aspx?customerid=" + result.d.Id);
+                    $('#ChangeProfile').show();
+
                 }
             },
             error: function (xhr, status) {

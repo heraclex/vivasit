@@ -42,7 +42,8 @@ namespace Viva.WebApp
                 newCustomer.LastName = txtSurName.Text;
                 newCustomer.City = txtCity.Text;
                 newCustomer.Address = txtStreet.Text;
-                newCustomer.Country = txtCountry.Text;
+                newCustomer.Surburb = txtSurburb.Text;
+                newCustomer.Zipcode = txtZipcode.Text;
                 newCustomer.PhoneNumber = txtPhone.Text;
                 newCustomer.HowContactYou = chklistContact.Text;
                 newCustomer.HearUs = dropHear.Text;

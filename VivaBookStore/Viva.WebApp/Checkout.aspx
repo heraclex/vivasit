@@ -1,11 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="Viva.WebApp.ShoppingCart" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Viva.WebApp.Checkout" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <table id="cart" class="table table-hover table-condensed">
+<table id="cart" class="table table-hover table-condensed">
         <thead>
             <tr>
                 <th style="width: 50%">Product</th>
-                <th style="width: 10%">Instock</th>
                 <th style="width: 10%">Price</th>
                 <th style="width: 8%">Quantity</th>
                 <th style="width: 12%" class="text-center">Subtotal</th>

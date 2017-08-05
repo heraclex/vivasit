@@ -21,6 +21,8 @@ namespace Viva.DAL
 
         public DbSet<Picture> Pictures { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BookStoreDbContext"/> class.
         /// </summary>

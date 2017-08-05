@@ -244,5 +244,28 @@ namespace Viva.Service
                 && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x=>x.OrderItems).FirstOrDefault();
             }
         }
+
+        public Order GetCurrentOrderbyOrderID(int orderid)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                // Return the current Order (ShoppingCartItems)
+                // Can return null in case customer don't have any orders
+                return context.Orders.Where(x =>
+                x.Id == orderid
+                && x.OrderStatusId == (int)OrderStatus.Pending
+                && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x => x.OrderItems).FirstOrDefault();
+            }
+        }
+
+        public Contact InsertContact(Contact newcontact)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                context.Contacts.Add(newcontact);
+                context.SaveChanges();
+            }
+            return newcontact;
+        }
     }
 }

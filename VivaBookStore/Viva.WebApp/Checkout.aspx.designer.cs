@@ -11,7 +11,7 @@ namespace Viva.WebApp
 {
 
 
-    public partial class Contact
+    public partial class Checkout
     {
     }
 }

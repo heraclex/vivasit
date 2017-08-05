@@ -73,14 +73,21 @@
                     <% var displayLogin = string.Empty;
                         var displayLogout = string.Empty;
                         var customerFirstName = string.Empty;
+                        var dislayprofile = string.Empty;
+                        var customerID = 0;
+
                         if (HttpContext.Current.Session["currentuser"] == null) {
                             displayLogin = "block";
                             displayLogout = "none";
+                            dislayprofile = "none";
                         } else{ //User is already login
                             displayLogin = "none";
                             displayLogout = "block";
+                            dislayprofile= "block";
                             var customer = (Viva.DAL.Entities.Customer)HttpContext.Current.Session["currentuser"];
-                            customerFirstName = customer.FirstName;} %>
+                            customerFirstName = customer.FirstName;
+                            customerID = customer.Id;
+                        } %>
 
                     <li class="dropdown" id="logindropdown" style="display:<%=displayLogin%>;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -126,9 +133,14 @@
                         </ul>
                     </li>
                     <li>
-                        <p class="navbar-text" id="helloText" style="display:<%=displayLogout%>;">Hi <%=customerFirstName %></p>
+                        <p class="navbar-text" id="helloText" style="display: <%=displayLogout%>;">Hi <%=customerFirstName %></p>
                     </li>
-                    <li id="logoutText" style="display:<%=displayLogout%>;"><a href="javascript:;" id="signout-link">Sign Out</a></li>
+                    <li id="ChangeProfile" style="display: <%=dislayprofile%>;">
+                        <a href="ChangeProfile.aspx?customerid=<%=customerID%>" id="changeprofile-link">Change Profile</a></li>
+                    </li>
+                    <li id="logoutText" style="display: <%=displayLogout%>;">
+                        <a href="javascript:;" id="signout-link">Sign Out</a></li>
+                
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -18,6 +18,7 @@ function logout(event) {
             $('#helloText').hide();
             $("#username").val('');
             $("#password").val('');
+            $('#ChangeProfile').hide();
         },
         error: function (xhr, status) {
             alert("An error occurred: " + status);
