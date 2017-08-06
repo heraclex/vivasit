@@ -82,8 +82,7 @@
                         var dislayprofile = string.Empty;
                         var customerID = 0;
 
-                        if (HttpContext.Current.Session["currentuser"] == null)
-                        {
+                        if (System.Web.HttpContext.Current.Session == null || System.Web.HttpContext.Current.Session["currentuser"] == null) {
                             displayLogin = "block";
                             displayLogout = "none";
                             dislayprofile = "none";

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,5 +18,8 @@ namespace Viva.DAL.Entities
         public virtual Book Book { get; set; }
 
         public virtual Order Order { get; set; }
+        
+        [NotMapped]
+        public bool Remove { get; set; }
     }
 }
