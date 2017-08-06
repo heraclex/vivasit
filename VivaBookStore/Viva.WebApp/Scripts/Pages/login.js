@@ -34,14 +34,9 @@ function login(event) {
                 } else {
                     // Login Success
                     $('#logindropdown').hide();
-                    $('#logoutText').show();
-                    
-                    $('#helloText').show();
+                    $('#logoutdropdown').show();                    
                     $('#helloText').html('Hi ' + result.d.FirstName);
-
-                    $('#ChangeProfile > a').attr("href", "ChangeProfile.aspx?customerid=" + result.d.Id);
-                    $('#ChangeProfile').show();
-
+                    $('#changeprofile-link').attr("href", "ChangeProfile.aspx?customerid=" + result.d.Id);
                 }
             },
             error: function (xhr, status) {

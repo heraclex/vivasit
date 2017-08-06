@@ -28,7 +28,7 @@ namespace Viva.WebApp
                         var isConvertToIntSuccess = Int32.TryParse(orderidQueryString, out orderid);
                         if (isConvertToIntSuccess == true && orderid > 0)
                         {
-                            var order = this.service.GetCurrentOrderbyOrderID(orderid);
+                            var order = this.service.GetOrderByID(orderid);
                            
                         }
                     }

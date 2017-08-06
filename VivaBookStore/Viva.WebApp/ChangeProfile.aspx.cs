@@ -14,6 +14,12 @@ namespace Viva.WebApp
         protected Customer customer = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            // If user haven't login yet, redirect to Default page
+            if (HttpContext.Current.Session["currentuser"] == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
+
             var customeridString = Request.QueryString["customerid"];
             if (customeridString != null)
             {
