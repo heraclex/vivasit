@@ -184,8 +184,23 @@ namespace Viva.Service
                 return context.Roles.ToList();
             }
         }
-              
-             
+
+        public bool IsExistUsename(string username)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Customers.Any(
+                    x => x.UserName.Equals(username) );
+            }
+        }
+        public bool IsExistEmail(string email)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Customers.Any(
+                    x => x.EmailAddress.Equals(email));
+            }
+        }
 
         public bool IsLoginSuccess(string username, string password)
         {
@@ -319,6 +334,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
+                commend.CreatedDate = DateTime.Now;
                 context.Recommendations.Add(commend);
                 context.SaveChanges();
             }

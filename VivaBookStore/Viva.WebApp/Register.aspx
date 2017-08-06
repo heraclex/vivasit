@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <form class="form-horizontal" runat="server">
         <div class="form-group">
-            <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblMessage" class="col-sm-2" runat="server" Text="" ForeColor="#66FF33"></asp:Label>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Email</label>
@@ -13,6 +13,17 @@
             <div class="col-sm-6">
                 <asp:RequiredFieldValidator ID="RequirefieldEmail" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtEmail" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Pls input right email format" ControlToValidate="txtEmail" ForeColor="#CC0000" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">User Name</label>
+            <div class="col-sm-4">
+                <asp:TextBox ID="txtUseName" class="form-control" runat="server" ></asp:TextBox>
+            </div>
+            <div class="col-sm-6">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtUseName" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
+           
             </div>
         </div>
 

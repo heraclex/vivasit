@@ -49,13 +49,13 @@ namespace Viva.DAL.Initializers
         {
             var categories = new List<Category>
             {
-                new Category {CategoryName="Business" },
-                new Category {CategoryName="Cookery"},
-                new Category {CategoryName="Fiction"},
-                new Category {CategoryName="Non Fiction"},
-                new Category {CategoryName="Leisure"},
-                new Category {CategoryName="Travel"},
-                new Category {CategoryName="Spritual"}
+                new Category {CategoryName="Business", CreatedDate = DateTime.Now },
+                new Category {CategoryName="Cookery", CreatedDate = DateTime.Now},
+                new Category {CategoryName="Fiction", CreatedDate = DateTime.Now},
+                new Category {CategoryName="Non Fiction", CreatedDate = DateTime.Now},
+                new Category {CategoryName="Leisure", CreatedDate = DateTime.Now},
+                new Category {CategoryName="Travel", CreatedDate = DateTime.Now},
+                new Category {CategoryName="Spritual", CreatedDate = DateTime.Now}
             };
 
             categories.ForEach(c => context.Categories.Add(c));
@@ -67,9 +67,9 @@ namespace Viva.DAL.Initializers
         {
             var roles = new List<Role>
             {
-                new Role {RoleName="SysAdmin"},
-                new Role {RoleName="Admin"},
-                new Role {RoleName="User"},
+                new Role {RoleName="SysAdmin", CreatedDate = DateTime.Now},
+                new Role {RoleName="Admin", CreatedDate = DateTime.Now},
+                new Role {RoleName="User", CreatedDate = DateTime.Now},
             };
 
             roles.ForEach(r => context.Roles.Add(r));
@@ -98,8 +98,8 @@ namespace Viva.DAL.Initializers
                     Active = true,
                     CreditCardNumber="123....90",
                     CardExpiredDate="12/20",
-                    RoleId = 1
-                   
+                    RoleId = 1, CreatedDate = DateTime.Now
+
                 },
 
                 new Customer {
@@ -117,7 +117,7 @@ namespace Viva.DAL.Initializers
                     Active = true,
                     CreditCardNumber="333....90",
                     CardExpiredDate="12/20",
-                    RoleId = 1
+                    RoleId = 1, CreatedDate = DateTime.Now
                 },
 
                 new Customer {
@@ -135,7 +135,7 @@ namespace Viva.DAL.Initializers
                     Active = true,
                     CreditCardNumber="9999....99",
                     CardExpiredDate="12/20",
-                    RoleId = 1
+                    RoleId = 1, CreatedDate = DateTime.Now
                 },
             };
 

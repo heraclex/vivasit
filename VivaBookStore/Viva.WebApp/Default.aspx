@@ -60,6 +60,7 @@
                                 <div class="caption">
                                     <h4 class="pull-right">$<%=book.Price %></h4>
                                     <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>"><%=book.BookName %></a></h4>
+                                    <p><%=book.AuthorName %></p>
                                     <p><%=book.Description %></p>
                                     <%--  --%>
                                         
@@ -71,7 +72,7 @@
                                 <div class="ratings">
                                     <p class="pull-right">15 reviews</p>
                                     <p>
-                                        <a href="ProductDetail.aspx?bookid=<%=book.Id %>" >Add To Card</a>
+                                        <a href="ShoppingCart.aspx?bookid=<%=book.Id %>" >Add To Card</a>
                                     </p>
                                 </div>
                             </div>

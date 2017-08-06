@@ -12,21 +12,25 @@ namespace Viva.WebApp
     public partial class Recomendation : System.Web.UI.Page
     {
         protected readonly BookStoreService service = new BookStoreService();
-        protected Order CurrentOrder = null;
+        protected List<Recommendation> Recommendations = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Recommendations = this.service.GetAllRecommendations();
             if (HttpContext.Current.Session["currentuser"] != null)
             {
                 var customer = (Customer)HttpContext.Current.Session["currentuser"];
-                txtName.Text = customer.UserName;               
+                txtName.Text = customer.UserName;
 
             }
+            else
+            {
 
-            txtName.Visible = false;
-            txtComment.Visible = false;
-            lblComment.Visible = false;
-            lblUsername.Visible = false;
-            lblNotice.Text = "Please login to commend";
+                txtComment.ReadOnly = true;                
+                btnCommend.Visible = false;
+                //lblUsername.Visible = false;
+                lblNotice.Text = "Please login to commend";
+            }
+                        
 
 
         }
@@ -42,8 +46,9 @@ namespace Viva.WebApp
                 this.service.InsertRecommendation(newCommend);
                 lblNotice.Text = "Thanks for your recommendation";
                 txtComment.Text = "";
+                this.Recommendations = this.service.GetAllRecommendations();
             }
-            lblNotice.Text = "Please login to commend";
+            
 
 
 
