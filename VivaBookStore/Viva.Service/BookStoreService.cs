@@ -211,7 +211,7 @@ namespace Viva.Service
             }
         }
 
-        #region Order
+        #region Orders
         public List<Order> GetAllOrders()
         {
             using (var context = base.GetDbContextInstance())
@@ -269,13 +269,13 @@ namespace Viva.Service
             return order;
         }
 
-        public List<Order> GetCompletedOrders(int customerId)
+        public List<Order> GetCompeltedOrdersByCustomer(int customerId)
         {
             using (var context = base.GetDbContextInstance())
             {
                 return context.Orders.Where(x =>
                 x.CustomerId == customerId
-                && x.OrderStatusId == (int)OrderStatus.Complete
+                && (x.OrderStatusId == (int)OrderStatus.Processing || x.OrderStatusId == (int)OrderStatus.Complete)
                 && x.PaymentStatusId == (int)PaymentStatus.Paid).ToList();
             }
         }
@@ -304,16 +304,20 @@ namespace Viva.Service
             }
         }
 
-        public Order GetCurrentOrderbyOrderID(int orderid)
+        public Order GetOrderByID(int orderid)
         {
             using (var context = base.GetDbContextInstance())
             {
-                // Return the current Order (ShoppingCartItems)
-                // Can return null in case customer don't have any orders
-                return context.Orders.Where(x =>
-                x.Id == orderid
-                && x.OrderStatusId == (int)OrderStatus.Pending
-                && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x => x.OrderItems).FirstOrDefault();
+                var result = context.Orders.Where(x => x.Id == orderid).Include(x => x.OrderItems).FirstOrDefault();
+                if (result != null && result.OrderItems.Count > 0)
+                {
+                    // Get Book detail
+                    foreach (var orderItem in result.OrderItems)
+                    {
+                        orderItem.Book = context.Books.Where(x => x.Id == orderItem.BookId).FirstOrDefault();
+                    }
+                }
+                return result;
             }
         }
         #endregion

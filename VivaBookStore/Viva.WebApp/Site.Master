@@ -23,6 +23,7 @@
 
     <script src="Scripts/Pages/login.js"></script>
     <script src="Scripts/Pages/logout.js"></script>
+    <script src="Scripts/Pages/search.js"></script>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -65,13 +66,16 @@
                         <a href="#" data-toggle="modal" data-target="#LoginModal">Login</a>
                     </li>--%>
                 </ul>
+
+                <!--Search Form-->
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control 400px" placeholder="title/author/description">
+                        <input type="text" id="searchkeyword" class="form-control" style="min-width:350px" placeholder="Search title/author/description">
                     </div>
-                    
-                    <button type="submit" class="btn btn-default">Search</button>
+
+                    <button id="btnSubmitSearch" type="submit" class="btn btn-default">Search</button>
                 </form>
+                
                 <!--Login Form-->
                 <!-- https://bootsnipp.com/snippets/featured/fancy-navbar-login-sign-in-form -->
                 <ul class="nav navbar-nav navbar-right">
@@ -82,16 +86,15 @@
                         var dislayprofile = string.Empty;
                         var customerID = 0;
 
-                        if (System.Web.HttpContext.Current.Session == null || System.Web.HttpContext.Current.Session["currentuser"] == null) {
+                        if (System.Web.HttpContext.Current.Session == null || System.Web.HttpContext.Current.Session["currentuser"] == null)
+                        {
                             displayLogin = "block";
                             displayLogout = "none";
-                            dislayprofile = "none";
                         }
                         else
                         { //User is already login
                             displayLogin = "none";
                             displayLogout = "block";
-                            dislayprofile = "block";
                             var customer = (Viva.DAL.Entities.Customer)HttpContext.Current.Session["currentuser"];
                             customerFirstName = customer.FirstName;
                             customerID = customer.Id;
@@ -141,16 +144,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <p class="navbar-text" id="helloText" style="display: <%=displayLogout%>;">Hi <%=customerFirstName %></p>
-                    </li>
-                    <li id="ChangeProfile" style="display: <%=dislayprofile%>;">
-                        <a href="ChangeProfile.aspx?customerid=<%=customerID%>" id="changeprofile-link">Change Profile</a></li>
-                    </li>
-                    <li id="logoutText" style="display: <%=displayLogout%>;">
-                        <a href="javascript:;" id="signout-link">Sign Out</a></li>
 
-                </ul>
+                    <li class="dropdown" id="logoutdropdown" style="display: <%=displayLogout%>;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b id="helloText">Hi <%=customerFirstName %> </b><span class="caret"></span></a>
+                        <ul id="logout-dp" class="dropdown-menu">
+                            <li><a href="ShoppingCart.aspx">My Cart</a></li>
+                            <li><a href="CustomerOrders.aspx">View Orders</a></li>
+                            <li><a id="changeprofile-link" href="ChangeProfile.aspx?customerid=<%=customerID%>">Change Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:;" id="signout-link">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>               
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -181,6 +186,7 @@
             // Binding click event on button Sign In
             $("#btnSignIn").click(login);
             $("#signout-link").click(logout);
+            $("#btnSubmitSearch").click(search);
         });
     </script>
 

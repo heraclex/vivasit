@@ -12,13 +12,8 @@ function logout(event) {
             // Logout Success
 
             alert("Logout Success");
-
-            $('#logindropdown').show();
-            $('#logoutText').hide();
-            $('#helloText').hide();
-            $("#username").val('');
-            $("#password").val('');
-            $('#ChangeProfile').hide();
+            //redirect to default
+            window.location = "Default.aspx";
         },
         error: function (xhr, status) {
             alert("An error occurred: " + status);
