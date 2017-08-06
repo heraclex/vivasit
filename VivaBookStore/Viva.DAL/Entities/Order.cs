@@ -14,8 +14,6 @@ namespace Viva.DAL.Entities
         [DataType(DataType.Currency)]
         public decimal TotalPrice { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
-
         public int OrderStatusId { get; set; }
 
         public int PaymentStatusId { get; set; }

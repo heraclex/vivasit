@@ -30,10 +30,12 @@ namespace Viva.WebApp
             }
             return true;
         }
-    protected void btnRegister_Click(object sender, EventArgs e)
+        
+        protected void btnRegister_Click(object sender, EventArgs e)
         {
-                 
-            if (IscheckHowContactYou() == true)
+            var isEmailExisted = this.Service.IsExistEmail(txtEmail.Text);
+            var isUseNameExisted = this.Service.IsExistUsename(txtUseName.Text);
+            if (IscheckHowContactYou() == true && isEmailExisted == false)
             {
                 var newCustomer = new Customer();
                 newCustomer.EmailAddress = txtEmail.Text;
@@ -51,8 +53,27 @@ namespace Viva.WebApp
                 // add new customer to databaes
                 this.Service.InsertCustomer(newCustomer);
                 lblMessage.Text = "Register sucessfully";
+
+                txtEmail.Text = "";
+                txtPassword.Text = "";
+                txtRePassword.Text = "";
+                txtFirstName.Text = "";
+                txtSurName.Text = "";
+                txtCity.Text= "";
+                txtStreet.Text = "";
+                txtSurburb.Text = "";
+                txtZipcode.Text = "";
+                txtPhone.Text = "";
             }
-            //Server.Transfer("Default.aspx", true);
+            if (isEmailExisted == true)
+            {
+                lblMessage.Text = "Existing email";
+            }
+            if (isUseNameExisted == true)
+            {
+                lblMessage.Text = "Existing UserName";
+            }
+
         }
     }
 }
