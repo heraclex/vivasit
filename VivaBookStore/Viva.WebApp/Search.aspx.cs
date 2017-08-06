@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
-using Viva.DAL;
+using System.Web.UI.WebControls;
 using Viva.DAL.Entities;
 using Viva.Service;
 
 namespace Viva.WebApp
 {
-    public partial class Default : Page
+    public partial class Search : System.Web.UI.Page
     {
-        protected List<Category> Categories = null;
-
+        
         protected List<Book> Books = null;
-       
+
 
         private readonly BookStoreService service = new BookStoreService();
         protected void Page_Load(object sender, EventArgs e)
         {
             var categoryIdFromQueryString = Request.QueryString["categoryId"];
-                                    {
-                // Filter By CategoryId
-                this.Categories = this.service.GetAllCategories();
+            {
+               
 
                 if (string.IsNullOrEmpty(categoryIdFromQueryString))
                 {
@@ -36,13 +35,21 @@ namespace Viva.WebApp
                         this.Books = this.service.GetListBooksByCatogery(categoryId, true);
                     }
                 }
-            }            
+            }
         }
 
         protected string GetPictureUrlFromBytes(byte[] pictureBinary)
         {
             string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
             return "data:image/png;base64," + base64String;
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string keyword = txtKeyword.Text;
+            lblSearchNotice.Text = "Result for " + txtKeyword.Text;
+            this.Books = this.service.GetListBooksByKeyword(keyword, true);
+            
         }
     }
 }

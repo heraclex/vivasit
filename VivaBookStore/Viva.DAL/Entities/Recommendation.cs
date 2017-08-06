@@ -12,7 +12,7 @@ namespace Viva.DAL.Entities
         [StringLength(1000, MinimumLength = 3)]
         public string Comment {get;set;}
 
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; }
     }
