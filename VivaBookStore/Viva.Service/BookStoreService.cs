@@ -90,6 +90,34 @@ namespace Viva.Service
                 
             }
         }
+
+        public List<Book> GetListBooksByCatogery(int Categoryid, bool includePicture)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var query = context.Books.Where(x => x.CategoryId == Categoryid);
+                if (includePicture)
+                {
+                    query = query.Include(x => x.Picture);
+                }
+
+                return query.ToList();
+            }
+        }
+
+        public List<Book> GetListBooksByKeyword(string keyword, bool includePicture)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var query = context.Books.Where(x => x.BookName.Contains(keyword) || x.AuthorName.Contains(keyword) || x.Description.Contains(keyword));
+                if (includePicture)
+                {
+                    query = query.Include(x => x.Picture);
+                }
+
+                return query.ToList();
+            }
+        }
         public Book GetBookByID (int bookid)
         {
             using (var context = base.GetDbContextInstance())
@@ -156,22 +184,8 @@ namespace Viva.Service
                 return context.Roles.ToList();
             }
         }
-
-        public List<Order> GetAllOrders()
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                return context.Orders.Include(x=>x.OrderItems).ToList();
-            }
-        }
-
-        public List<Recommendation> GetAllRecommendations()
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                return context.Recommendations.Include(x=>x.Customer).ToList();
-            }
-        }
+              
+             
 
         public bool IsLoginSuccess(string username, string password)
         {
@@ -182,6 +196,14 @@ namespace Viva.Service
             }
         }
 
+        #region Order
+        public List<Order> GetAllOrders()
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Orders.Include(x => x.OrderItems).ToList();
+            }
+        }
         public Order InsertOrder(Order newOrder)
         {
             using (var context = base.GetDbContextInstance())
@@ -236,7 +258,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                return context.Orders.Where(x=>
+                return context.Orders.Where(x =>
                 x.CustomerId == customerId
                 && x.OrderStatusId == (int)OrderStatus.Complete
                 && x.PaymentStatusId == (int)PaymentStatus.Paid).ToList();
@@ -279,7 +301,28 @@ namespace Viva.Service
                 && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x => x.OrderItems).FirstOrDefault();
             }
         }
+        #endregion
 
+        #region Recommendation
+        public List<Recommendation> GetAllRecommendations()
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Recommendations.Include(x => x.Customer).ToList();
+            }
+        }
+        public Recommendation InsertRecommendation(Recommendation commend)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                context.Recommendations.Add(commend);
+                context.SaveChanges();
+            }
+            return commend;
+        }
+        #endregion
+
+        #region Contact
         public Contact InsertContact(Contact newcontact)
         {
             using (var context = base.GetDbContextInstance())
@@ -289,5 +332,7 @@ namespace Viva.Service
             }
             return newcontact;
         }
+        #endregion
+
     }
 }

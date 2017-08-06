@@ -18,22 +18,17 @@ namespace Viva.WebApp
         private readonly BookStoreService Service = new BookStoreService();
         protected void btnContact_Click(object sender, EventArgs e)
         {
-            //var newCustomer = new Customer();
-            //newCustomer.EmailAddress = txtEmail.Text;
-            //newCustomer.Password = txtPassword.Text;
-            //newCustomer.FirstName = txtFirstName.Text;
-            //newCustomer.LastName = txtSurName.Text;
-            //newCustomer.City = txtCity.Text;
-            //newCustomer.Address = txtStreet.Text;
-            //newCustomer.Surburb = txtSurburb.Text;
-            //newCustomer.Zipcode = txtZipcode.Text;
-            //newCustomer.PhoneNumber = txtPhone.Text;
-            //newCustomer.HowContactYou = chklistContact.Text;
-            //newCustomer.HearUs = dropHear.Text;
-            //newCustomer.RoleId = 3;
-            //// add new customer to databaes
-            //this.Service.InsertCustomer(newCustomer);
-            //lblMessage.Text = "Register sucessfully";
+            var newContact = new Contact();
+            newContact.EmailAddress = txtEmail.Text;
+            newContact.Name = txtName.Text;
+            newContact.Message = txtMessage.Text;
+
+            // add new contact to databaes
+            this.Service.InsertContact(newContact);
+            lblnotice.Text = "Thanks for your message. We will contact you soon.";
+            txtEmail.Text = "";
+            txtName.Text = "";
+            txtMessage.Text = "";
         }
     }
 }

@@ -11,6 +11,10 @@ namespace Viva.DAL.Entities
         [StringLength(50, MinimumLength = 3)]
         public string AuthorName { get; set; }
 
+        public string Publisher { get; set; }
+
+        public string PublishedYear { get; set; }
+
         public string Description { get; set; }
 
         [DataType(DataType.Currency)]

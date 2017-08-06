@@ -13,6 +13,15 @@ namespace Viva.WebApp {
     public partial class Recomendation {
         
         /// <summary>
+        /// lblNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNotice;
+        
+        /// <summary>
         /// Name control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Viva.WebApp {
         protected global::System.Web.UI.WebControls.Label Name;
         
         /// <summary>
+        /// lblUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsername;
+        
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace Viva.WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+        
+        /// <summary>
+        /// lblComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblComment;
         
         /// <summary>
         /// txtComment control.
