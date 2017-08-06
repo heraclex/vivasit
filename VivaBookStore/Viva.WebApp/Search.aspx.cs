@@ -18,6 +18,7 @@ namespace Viva.WebApp
         private readonly BookStoreService service = new BookStoreService();
         protected void Page_Load(object sender, EventArgs e)
         {
+            var searchKeyword = Request.QueryString["searchkeyword"];
             var categoryIdFromQueryString = Request.QueryString["categoryId"];
             {
                
