@@ -201,19 +201,30 @@ namespace Viva.Service
                 orderEntry.State = EntityState.Modified; // Tell EF this entity has been modified
 
                 // Update Order Details
-                foreach (var orderItem in order.OrderItems)
+                var index = 0;
+                while (order.OrderItems.Count > 0 && index < order.OrderItems.Count)
                 {
+                    var orderItem = order.OrderItems[index];
                     var orderItemEntry = context.Entry(orderItem);
-
                     if (orderItem.Id > 0)
                     {
-                        orderItemEntry.State = EntityState.Modified;
+                        if (orderItem.Remove == true)
+                        {
+                            // Don't need increa index here because this item was remove
+                            // that means the size of orderitems was reduce
+                            orderItemEntry.State = EntityState.Deleted;
+                        }
+                        else
+                        {
+                            orderItemEntry.State = EntityState.Modified;
+                            index++;
+                        }
                     }
                     else
                     {
                         orderItemEntry.State = EntityState.Added;
+                        index++;
                     }
-                    
                 }
 
                 context.SaveChanges();
@@ -238,10 +249,21 @@ namespace Viva.Service
             {
                 // Return the current Order (ShoppingCartItems)
                 // Can return null in case customer don't have any orders
-                return context.Orders.Where(x => 
+                var currentOrder = context.Orders.Where(x => 
                 x.CustomerId == customerId
                 && x.OrderStatusId == (int)OrderStatus.Pending
                 && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x=>x.OrderItems).FirstOrDefault();
+
+                if (currentOrder != null && currentOrder.OrderItems.Count > 0)
+                {
+                    // Get Book detail
+                    foreach (var orderItem in currentOrder.OrderItems)
+                    {
+                        orderItem.Book = context.Books.Where(x => x.Id == orderItem.BookId).FirstOrDefault();
+                    }
+                }
+
+                return currentOrder;
             }
         }
 

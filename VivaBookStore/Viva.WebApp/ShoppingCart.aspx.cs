@@ -13,52 +13,87 @@ namespace Viva.WebApp
     {
         protected readonly BookStoreService service = new BookStoreService();
         protected Order CurrentOrder = null;
+        protected Customer CurrentCustomer = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            // If user haven't login yet, redirect to Default page
+            if (HttpContext.Current.Session["currentuser"] == null)
             {
-                // When the first time load to this page                
-                if (HttpContext.Current.Session["currentuser"] == null)
+                Response.Redirect("Default.aspx");
+            }
+
+            this.CurrentCustomer = (Customer)HttpContext.Current.Session["currentuser"];
+
+            // Get CurrentOrder (order which is in Pending Status) based on customerId 
+            this.CurrentOrder = this.service.GetCurrentOrder(this.CurrentCustomer.Id);
+
+            // First Time Page Load
+            if (!Page.IsPostBack)
+            {     
+                var bookIdQueryString = Request.QueryString["bookid"];
+
+                if (string.IsNullOrEmpty(bookIdQueryString) && this.CurrentOrder == null)
                 {
-                    Server.MapPath("Default.aspx");
+                    // If bookIdQueryString null and current order is null, return back to Defdault Page
+                    // in order to force user have to by some things before viewin their cart detail.
+                    Response.Redirect("Default.aspx");
+                }
+
+                if (bookIdQueryString != null)
+                {
+                    var bookid = 0;
+                    // Try to get bookid from QueryString Ex: http://localhost:9090/ShopingCart?bookid=123
+                    var isConvertToIntSuccess = Int32.TryParse(bookIdQueryString, out bookid);
+                    if (isConvertToIntSuccess == true && bookid > 0)
+                    {
+                        var book = this.service.GetBookByID(bookid);
+                        
+                        if (this.CurrentOrder != null)
+                        {
+                            // Update Current Order
+                            this.UpdateOrderDetails(this.CurrentOrder, book);
+                        }
+                        else
+                        {
+                            // Create New Order(Status=Pending) with one book item
+                            this.InsertNewOrder(this.CurrentCustomer.Id, book);
+                        }
+
+                        // Remove Query String in Url to avoid adding more book quntity when page reload
+                        Response.Redirect("ShoppingCart.aspx");
+                    }
+                }
+            }
+        }
+
+        protected void btnUpdateCartDetail_Click(object sender, EventArgs e)
+        {
+            foreach (var orderItem in this.CurrentOrder.OrderItems)
+            {
+                var isdeleted = Request.Form["deleteOrderItem_" + orderItem.Id];
+                if (!string.IsNullOrEmpty(isdeleted) && isdeleted.Equals("on"))
+                {
+                    // When User checked delete for this item. Enable this flag
+                    orderItem.Remove = true;
                 }
                 else
                 {
-                    var customer = (Customer)HttpContext.Current.Session["currentuser"];
-                    var bookIdQueryString = Request.QueryString["bookid"];
-                    if (bookIdQueryString != null)
-                    {
-                        var bookid = 0;
-                        // Try to get bookid from QueryString 
-                        // http://localhost:9090/ShopingCart?bookid=123
-
-                        var isConvertToIntSuccess = Int32.TryParse(bookIdQueryString, out bookid);
-                        if (isConvertToIntSuccess == true && bookid > 0)
-                        {
-                            var book = this.service.GetBookByID(bookid);
-                            this.CurrentOrder = this.service.GetCurrentOrder(customer.Id);
-                            if (this.CurrentOrder != null)
-                            {
-                                this.UpdateOrderDetails(this.CurrentOrder, book);
-                            }
-                            else
-                            {
-                                this.InsertNewOrder(customer.Id, book);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.CurrentOrder = this.service.GetCurrentOrder(customer.Id);
-                        // If User has no Shopping cart, return to Defautl page
-                        if (this.CurrentOrder == null)
-                        {
-                            Server.MapPath("Default.aspx");
-                        }
-                    }
+                    // Get quantity data from form submit
+                    orderItem.Quantity = Convert.ToInt32(Request.Form["quantityOrderItem_" + orderItem.Id]);
                 }                
             }
+
+            this.service.UpdateOrder(this.CurrentOrder);
+        }
+
+        protected void btnSubmitOrder_Click(object sender, EventArgs e)
+        {
+            this.CurrentOrder.CreatedDate = DateTime.Now;
+            this.CurrentOrder.OrderStatusId = (int)OrderStatus.Processing;
+            this.CurrentOrder.PaymentStatusId = (int)PaymentStatus.Paid;
+            this.service.UpdateOrder(this.CurrentOrder);
+            Response.Redirect("Default.aspx");
         }
 
         private void UpdateOrderDetails(Order currentOrder, Book book)

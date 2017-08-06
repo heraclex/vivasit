@@ -37,7 +37,7 @@ namespace Viva.WebApp
                 // If Login Success, Store user id to session
                 if (HttpContext.Current.Session["currentuser"] == null)
                 {
-                    HttpContext.Current.Session["currentuser"] = customer;
+                    HttpContext.Current.Session.Add("currentuser", customer);
                 }
                 
                 return customer;
