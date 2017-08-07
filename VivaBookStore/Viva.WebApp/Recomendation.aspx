@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Recomendation.aspx.cs" Inherits="Viva.WebApp.Recomendation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Label ID="lblNotice" runat="server" Text="" ForeColor="Yellow"></asp:Label>
+    <asp:Label ID="lblNotice" runat="server" ForeColor="#0066FF"></asp:Label>
     <br /><br />
     <form class="form-horizontal" runat="server">
         

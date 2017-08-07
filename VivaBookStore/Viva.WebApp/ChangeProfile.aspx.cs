@@ -97,9 +97,16 @@ namespace Viva.WebApp
             txtSurName.ReadOnly = false;
             txtCity.ReadOnly = false;
             txtStreet.ReadOnly = false;
+            txtZipcode.ReadOnly = false;
             txtSurburb.ReadOnly = false;
             txtPhone.ReadOnly = false;
             btnSubmit.Visible = true;
+            btnUpdate.Visible = false;
+        }
+
+        protected void btnChanePass_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassWord.aspx");
         }
     }
 }

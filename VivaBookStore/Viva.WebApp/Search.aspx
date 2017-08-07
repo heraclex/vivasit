@@ -16,10 +16,10 @@
                         <br />
                         <div>
                             <asp:DropDownList CssClass="form-control" ID="dropPrice" runat="server">
-                                <asp:ListItem>All</asp:ListItem>
-                                <asp:ListItem>Under $20</asp:ListItem>
-                                <asp:ListItem>$20 to $40</asp:ListItem>
-                                <asp:ListItem>$40+</asp:ListItem>
+                                <asp:ListItem Value="1">All</asp:ListItem>
+                                <asp:ListItem Value="2">Under $20</asp:ListItem>
+                                <asp:ListItem Value="3">$20 to $40</asp:ListItem>
+                                <asp:ListItem Value="4">$40+</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                          <br />
@@ -50,12 +50,12 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <img style="height: 200px; width: 100%; display: block;"
-                                    src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="<%=book.BookName %>">
+                                    src="<%=book.GetPictureUrl() %>" alt="<%=book.BookName %>">
                                 <div class="caption">
                                     <h4 class="pull-right">$<%=book.Price %></h4>
                                     <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>"><%=book.BookName %></a></h4>
-                                    <p><%=book.Description %></p>
-                                    <%--  --%>
+                                    <p><%=book.AuthorName%></p>
+                                    <p><%=book.Description %></p>                                   
                                         
                                     
                                 </div>
@@ -65,7 +65,7 @@
                                 <div class="ratings">
                                     <p class="pull-right">15 reviews</p>
                                     <p>
-                                        <a href="ProductDetail.aspx?bookid=<%=book.Id %>" >Add To Card</a>
+                                        <a href="ShoppingCart.aspx?bookid=<%=book.Id %>" >Add To Card</a>
                                     </p>
                                 </div>
                             </div>

@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="ChangePassWord.aspx" />
     <Content Include="ChangeProfile.aspx" />
     <Content Include="Checkout.aspx" />
     <Content Include="ContactUs.aspx" />
@@ -212,6 +213,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ChangePassWord.aspx.cs">
+      <DependentUpon>ChangePassWord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassWord.aspx.designer.cs">
+      <DependentUpon>ChangePassWord.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangeProfile.aspx.cs">
       <DependentUpon>ChangeProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

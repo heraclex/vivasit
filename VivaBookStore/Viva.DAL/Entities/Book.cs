@@ -1,5 +1,6 @@
 ﻿using Viva.DAL.Entities;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Viva.DAL.Entities
 {
@@ -17,6 +18,8 @@ namespace Viva.DAL.Entities
 
         public string Description { get; set; }
 
+        public bool NewRelease { get; set; }
+
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
@@ -32,6 +35,17 @@ namespace Viva.DAL.Entities
         public int QuantityInUnit { get; set; }
 
         public virtual Picture Picture { get; set; }
+
+        public string GetPictureUrl()
+        {
+            var pictureBinaryInBase64String = string.Empty;
+            if (this.Picture != null)
+            {
+                pictureBinaryInBase64String = Convert.ToBase64String(this.Picture.PictureBinary, 0, this.Picture.PictureBinary.Length);
+            }
+             
+            return "data:image/png;base64," + pictureBinaryInBase64String;
+        }
 
     }
 }

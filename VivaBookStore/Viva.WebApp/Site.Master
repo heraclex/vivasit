@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img src="Content/images/logo1.png" style="width: 110px; height: 30px" />
+                    <img src="Content/images/logo2.png" style="width: 110px; height: 30px" />
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -70,7 +70,7 @@
                 <!--Search Form-->
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" id="searchkeyword" class="form-control" style="min-width:350px" placeholder="Search title/author/description">
+                        <input type="text" id="searchkeyword" class="form-control" style="min-width:400px" placeholder="Search title/author/description">
                     </div>
 
                     <button id="btnSubmitSearch" type="submit" class="btn btn-default">Search</button>

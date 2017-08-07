@@ -19,13 +19,17 @@ namespace Viva.WebApp
         protected void Page_Load(object sender, EventArgs e)
         {
             var categoryIdFromQueryString = Request.QueryString["categoryId"];
-                                    {
+            var NewRelease = Request.QueryString["NewRelease"];
+            {
                 // Filter By CategoryId
                 this.Categories = this.service.GetAllCategories();
 
                 if (string.IsNullOrEmpty(categoryIdFromQueryString))
-                {
-                    this.Books = this.service.GetAllBooks(true);
+                { if (NewRelease==null)
+                    {
+                        this.Books = this.service.GetAllBooks(true);
+                    } else { this.Books = this.service.GetListBooksNewRelease(true); }
+                    
                 }
                 else
                 {
@@ -36,7 +40,7 @@ namespace Viva.WebApp
                         this.Books = this.service.GetListBooksByCatogery(categoryId, true);
                     }
                 }
-            }            
+            }
         }
 
         protected string GetPictureUrlFromBytes(byte[] pictureBinary)

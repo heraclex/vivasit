@@ -14,26 +14,29 @@ namespace Viva.WebApp
     {
         private readonly BookStoreService service = new BookStoreService();
         protected Book book = null;
+        protected List<Book> RelatedBooks = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             var bookidString = Request.QueryString["bookid"];
-            if (bookidString != null)
+            var categoryString = Request.QueryString["categoryid"];
+            if (bookidString != null && categoryString != null)
             {
-                var bookid = 0;
+                var bookid = 0; var categoryid = 0;
                 var isConvertToIntSuccess = Int32.TryParse(bookidString, out bookid);
+                var isConvertCategory= Int32.TryParse(bookidString, out categoryid);
                 if (isConvertToIntSuccess == true && bookid > 0)
                 {
-                   this.book = this.service.GetBookByID(bookid);                    
+                   this.book = this.service.GetBookByID(bookid,true);
+                    this.RelatedBooks = this.service.GetListBooksByCatogery(categoryid,true);
                 }
-            }
-            //protected string GetPictureUrlFromBytes(byte[] pictureBinary)
-            //{
-            //    string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
-            //    return "data:image/png;base64," + base64String;
-            //}
-
-
+            }          
+            
+        }
+        protected string GetPictureUrlFromBytes(byte[] pictureBinary)
+        {
+            string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
+            return "data:image/png;base64," + base64String;
         }
     }
 }

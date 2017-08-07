@@ -3,12 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <form class="form-horizontal" runat="server">
         <div class="form-group">
-            <asp:Label ID="lblMessage" class="col-sm-2" runat="server" Text="" ForeColor="#66FF33"></asp:Label>
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-4"><asp:Label ID="lblMessage" class="col-sm-10" runat="server" Text="Please input all following information." ForeColor="Blue"></asp:Label> </div>
+            
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Email</label>
+            
             <div class="col-sm-4">
                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" ></asp:TextBox>
+
             </div>
             <div class="col-sm-6">
                 <asp:RequiredFieldValidator ID="RequirefieldEmail" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtEmail" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
@@ -40,7 +44,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label">Re-Password</label>
             <div class="col-sm-4">
-                <asp:TextBox ID="txtRePassword" ype="password" class="form-control" runat="server" ></asp:TextBox>
+                <asp:TextBox ID="txtRePassword" type="password" class="form-control" runat="server" ></asp:TextBox>
             </div>
              <div class="col-sm-4">
                  <asp:RequiredFieldValidator ID="RequirefieldRepass" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtRePassword" ForeColor="#CC0000"></asp:RequiredFieldValidator>
@@ -100,6 +104,7 @@
 
          <div class="form-group">
             <label class="col-sm-2 control-label">Zipcode</label>
+             <asp:Label ID="Label12" runat="server" Text="*" ForeColor="Red"></asp:Label>
            <div class="col-sm-4">
                 <asp:TextBox ID="txtZipcode" class="form-control" runat="server" ></asp:TextBox>
             </div>
@@ -133,7 +138,7 @@
         </div>  
         
          <div class="form-group">
-            <label class="col-sm-2 control-label">How did you hear about us?</label>
+            <label class="col-sm-2 control-label">How can we contact you?</label>
             <div class="col-sm-10">
                 <asp:CheckBoxList ID="chklistContact" runat="server">
                             <asp:ListItem Value="Phone">Phone</asp:ListItem>

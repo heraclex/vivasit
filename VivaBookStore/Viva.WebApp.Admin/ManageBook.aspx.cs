@@ -39,8 +39,15 @@ namespace Viva.WebApp.Admin
                 this.Service.InsertPicture(pic);
 
                 var newBook = new Book();
+                if (chkNewRelease.Checked == true)
+                {
+                    newBook.NewRelease = true;
+                }  else { newBook.NewRelease = false; }
+
                 newBook.BookName = txtBookName.Text;
                 newBook.AuthorName = txtAuthorName.Text;
+                newBook.Publisher = txtPublisher.Text;
+                newBook.PublishedYear = txtPublishedYear.Text;
                 newBook.CategoryId = Convert.ToInt32(ddCategory.SelectedValue);
                 newBook.Description = txtDescription.Value;
                 // assign picture to this new book
@@ -52,6 +59,15 @@ namespace Viva.WebApp.Admin
 
                 // add new book to databaes
                 this.Service.InsertBook(newBook);
+                txtBookName.Text ="";
+                txtAuthorName.Text = "";
+                txtPublisher.Text = "";
+                txtPublishedYear.Text = "";
+                txtDescription.Value = "";
+                txtPrice.Text = "";
+                txtQuantity.Text = "";
+                chkNewRelease.Checked = true;
+                lblMessage.Text = "Add new book successfully";
             }            
         }
 

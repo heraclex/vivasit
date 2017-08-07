@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-group">
-                <asp:Label ID="lblnotice" runat="server" ForeColor="White"></asp:Label>
+                <asp:Label ID="lblnotice" runat="server" ForeColor="#0066FF"></asp:Label>
             </div>
         </form>
 

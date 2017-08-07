@@ -11,6 +11,8 @@ namespace Viva.Service
 {
     public class BookStoreService : BaseService
     {
+
+        #region Customer
         public List<Customer> GetAllCustomers()
         {
             using (var context = base.GetDbContextInstance())
@@ -18,7 +20,7 @@ namespace Viva.Service
                 return context.Customers.ToList();
             }
         }
-        
+
         public Customer InsertCustomer(Customer customer)
         {
             using (var context = base.GetDbContextInstance())
@@ -74,7 +76,9 @@ namespace Viva.Service
                 return result;
             }
         }
-        
+        #endregion
+
+        #region Book
         public List<Book> GetAllBooks(bool includePicture)
         {
             using (var context = base.GetDbContextInstance())
@@ -105,6 +109,20 @@ namespace Viva.Service
             }
         }
 
+        public List<Book> GetListBooksNewRelease(bool includePicture)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var query = context.Books.Where(x => x.NewRelease == true);
+                if (includePicture)
+                {
+                    query = query.Include(x => x.Picture);
+                }
+
+                return query.ToList();
+            }
+        }
+
         public List<Book> GetListBooksByKeyword(string keyword, bool includePicture)
         {
             using (var context = base.GetDbContextInstance())
@@ -118,12 +136,13 @@ namespace Viva.Service
                 return query.ToList();
             }
         }
-        public Book GetBookByID (int bookid)
+     
+        public Book GetBookByID (int bookid, bool includePicture)
         {
             using (var context = base.GetDbContextInstance())
             {
-                var result = context.Books.First(x => x.Id == bookid);
-                return result;
+                return context.Books.Where(x => x.Id == bookid).Include(x=>x.Picture).FirstOrDefault();
+                               
             }
         }
 
@@ -175,41 +194,9 @@ namespace Viva.Service
             {
                 return context.Categories.ToList();
             }
-        }        
-
-        public List<Role> GetAllRoles()
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                return context.Roles.ToList();
-            }
         }
 
-        public bool IsExistUsename(string username)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                return context.Customers.Any(
-                    x => x.UserName.Equals(username) );
-            }
-        }
-        public bool IsExistEmail(string email)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                return context.Customers.Any(
-                    x => x.EmailAddress.Equals(email));
-            }
-        }
-
-        public bool IsLoginSuccess(string username, string password)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                return context.Customers.Any(
-                    u=>u.UserName.Equals(username) && password.Equals(password));
-            }
-        }
+        #endregion
 
         #region Orders
         public List<Order> GetAllOrders()
@@ -286,10 +273,10 @@ namespace Viva.Service
             {
                 // Return the current Order (ShoppingCartItems)
                 // Can return null in case customer don't have any orders
-                var currentOrder = context.Orders.Where(x => 
+                var currentOrder = context.Orders.Where(x =>
                 x.CustomerId == customerId
                 && x.OrderStatusId == (int)OrderStatus.Pending
-                && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x=>x.OrderItems).FirstOrDefault();
+                && x.PaymentStatusId == (int)PaymentStatus.Pending).Include(x => x.OrderItems).FirstOrDefault();
 
                 if (currentOrder != null && currentOrder.OrderItems.Count > 0)
                 {
@@ -354,5 +341,40 @@ namespace Viva.Service
         }
         #endregion
 
+        public List<Role> GetAllRoles()
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Roles.ToList();
+            }
+        }
+
+        public bool IsExistUsename(string username)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Customers.Any(
+                    x => x.UserName.Equals(username) );
+            }
+        }
+        public bool IsExistEmail(string email)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Customers.Any(
+                    x => x.EmailAddress.Equals(email));
+            }
+        }
+
+        public bool IsLoginSuccess(string username, string password)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Customers.Any(
+                    u=>u.UserName.Equals(username) && password.Equals(password));
+            }
+        }
+
+        
     }
 }

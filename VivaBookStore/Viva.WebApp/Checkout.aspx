@@ -13,7 +13,7 @@
         <tbody>
             <% foreach (var orderItem in this.CurrentOrder.OrderItems) %>
             <%{ %>
-            <%var bookDetail = this.service.GetBookByID(orderItem.BookId); %>
+            <%var bookDetail = this.service.GetBookByID(orderItem.BookId,true); %>
            
             <tr>
                 <td data-th="Product">

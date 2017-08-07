@@ -17,6 +17,9 @@
             </div>
             <div class="panel-body">
                 <!--Book Name-->
+                <div class="form-group">                    
+                    <asp:Label ID="lblMessage" class="col-sm-2 control-label" runat="server" Text="" ForeColor="#0033CC"></asp:Label>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Book Name</label>
                     <div class="col-sm-10">
@@ -47,9 +50,30 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Quantity</label>
                     <div class="col-sm-10">
-                        <asp:TextBox ID="txtQuantity" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtQuantity" ClientIDMode="Static" class="form-control" TextMode="Number" runat="server"></asp:TextBox>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10 checkbox-inline">
+                     <asp:CheckBox ID="chkNewRelease" runat="server" Text="New Release" Checked="True" />
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Publisher</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtPublisher" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Published Year</label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtPublishedYear" ClientIDMode="Static" class="form-control" runat="server" ></asp:TextBox>
+                    </div>
+                </div>
+
                 <!--ImageUrl-->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Image</label>

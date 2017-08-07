@@ -13,7 +13,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">Email</label>
+            <label class="col-sm-2 control-label">User Name</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtUsename" class="form-control"  runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -106,7 +106,7 @@
         </div>  
         
          <div class="form-group">
-            <label class="col-sm-2 control-label">How did you hear about us?</label>
+            <label class="col-sm-2 control-label">How can we contact you?</label>
             <div class="col-sm-10">
                 <asp:CheckBoxList ID="chklistContact" runat="server" ReadOnly="True">
                             <asp:ListItem Value="Phone">Phone</asp:ListItem>
@@ -127,6 +127,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click"  />
+                <asp:Button ID="btnChanePass" runat="server" Text="Change Password" OnClick="btnChanePass_Click"   />
             </div>
         </div>
     </form>

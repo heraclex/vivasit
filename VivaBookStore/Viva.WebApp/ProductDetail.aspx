@@ -3,21 +3,38 @@
 
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
-
             <div class="col-md-4">
-                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
-               
+                <img class="img-responsive" src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="">              
             </div>
 
             <div class="col-md-8">
                 <h3><%=book.BookName %></h3>
-                <h3><%=book.AuthorName %></h3>
-                <p><%=book.Description %></p>
-                <h3><%=book.Price %></h3>
-                <h3><%=book.QuantityInUnit %></h3>
-                <h5><a href="ShoppingCart.aspx?bookid=<%=book.Id %>">Add to Cart</a></h5>
+                <h4>$ <%=book.Price %></h4> <h4><a href="ShoppingCart.aspx?bookid=<%=book.Id %>">Add to Cart</a></h4>
+                 <div class="row">
+                     <div class="form-group">
+                         <div class="col-sm-2">Author:</div>
+                         <div class="col-sm-4"><%=book.AuthorName %></div>
+                     </div><br />
+
+                     <div class="form-group">
+                         <div class="col-sm-2">Description:</div>
+                         <div class="col-sm-10"><%=book.Description %></div>
+                     </div><br />
+                     <div class="form-group">
+                         <div class="col-sm-2">In STock: </div>
+                         <div class="col-sm-10"><%=book.QuantityInUnit %></div>
+                     </div><br />
+                     <div class="form-group">
+                         <div class="col-sm-2">Publisher: </div>
+                         <div class="col-sm-10"><%=book.Publisher %></div>
+                     </div><br />
+                     <div class="form-group">
+                         <div class="col-sm-2">Published Year:</div>
+                         <div class="col-sm-10"><%=book.PublishedYear%></div>
+                     </div><br />
+                </div>                
+                
             </div>
 
         </div>
@@ -30,35 +47,19 @@
             
         <!-- Related Projects Row -->
         <div class="row">
-
+            
             <div class="col-lg-12">
                 <h3 class="page-header">Related Projects</h3>
             </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            <% foreach (var Relatedbook in this.RelatedBooks) %>
+                    <%{ %>
+            <div class="col-sm-3">
+                <a href="ProductDetail.aspx?bookid=<%=Relatedbook.Id %>&categoryid=<%=Relatedbook.CategoryId %>">
+                    <img class="img-responsive portfolio-item" src="<%=this.GetPictureUrlFromBytes(Relatedbook.Picture.PictureBinary) %>" alt="<%=Relatedbook.BookName %>">
                 </a>
             </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
+           
+            <%} %>
         </div>
         <!-- /.row -->
 </asp:Content>

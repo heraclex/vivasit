@@ -35,11 +35,12 @@ namespace Viva.WebApp
         {
             var isEmailExisted = this.Service.IsExistEmail(txtEmail.Text);
             var isUseNameExisted = this.Service.IsExistUsename(txtUseName.Text);
-            if (IscheckHowContactYou() == true && isEmailExisted == false)
+            if (IscheckHowContactYou() == true && isEmailExisted == false && isUseNameExisted == false)
             {
                 var newCustomer = new Customer();
                 newCustomer.EmailAddress = txtEmail.Text;
                 newCustomer.Password = txtPassword.Text;
+                newCustomer.UserName = txtUseName.Text;
                 newCustomer.FirstName = txtFirstName.Text;
                 newCustomer.LastName = txtSurName.Text;
                 newCustomer.City = txtCity.Text;
@@ -52,9 +53,11 @@ namespace Viva.WebApp
                 newCustomer.RoleId = 3;
                 // add new customer to databaes
                 this.Service.InsertCustomer(newCustomer);
+                
                 lblMessage.Text = "Register sucessfully";
 
                 txtEmail.Text = "";
+                txtUseName.Text = "";
                 txtPassword.Text = "";
                 txtRePassword.Text = "";
                 txtFirstName.Text = "";

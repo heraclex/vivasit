@@ -18,24 +18,12 @@ namespace Viva.WebApp
         private readonly BookStoreService service = new BookStoreService();
         protected void Page_Load(object sender, EventArgs e)
         {
-            var searchKeyword = Request.QueryString["searchkeyword"];
-            var categoryIdFromQueryString = Request.QueryString["categoryId"];
+            if (!Page.IsPostBack)
             {
-               
-
-                if (string.IsNullOrEmpty(categoryIdFromQueryString))
-                {
-                    this.Books = this.service.GetAllBooks(true);
-                }
-                else
-                {
-                    var categoryId = 0;
-                    var isConvertToIntSuccess = Int32.TryParse(categoryIdFromQueryString, out categoryId);
-                    if (isConvertToIntSuccess && categoryId > 0)
-                    {
-                        this.Books = this.service.GetListBooksByCatogery(categoryId, true);
-                    }
-                }
+                var searchKeyword = Request.QueryString["searchkeyword"];
+                txtKeyword.Text = searchKeyword;
+                lblSearchNotice.Text = "Result for " + "'" + txtKeyword.Text + "'";
+                this.Books = this.service.GetListBooksByKeyword(searchKeyword, true);
             }
         }
 
@@ -48,7 +36,15 @@ namespace Viva.WebApp
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string keyword = txtKeyword.Text;
-            lblSearchNotice.Text = "Result for " + txtKeyword.Text;
+            //Decimal pricefrom; Decimal priceto;
+            //switch(Convert.ToDecimal(dropPrice.SelectedValue))
+            //{
+            //    case 2: pricefrom = 0; priceto = 19; break;
+            //    case 3: pricefrom = 20; priceto = 39; break;
+            //    case 4: pricefrom = 40; priceto = 40; break;
+            //    default: pricefrom = 40; priceto = 40; break;
+            //}
+            lblSearchNotice.Text = "Result for " + "'" + txtKeyword.Text + "'";
             this.Books = this.service.GetListBooksByKeyword(keyword, true);
             
         }

@@ -47,7 +47,7 @@ namespace Viva.WebApp
                     var isConvertToIntSuccess = Int32.TryParse(bookIdQueryString, out bookid);
                     if (isConvertToIntSuccess == true && bookid > 0)
                     {
-                        var book = this.service.GetBookByID(bookid);
+                        var book = this.service.GetBookByID(bookid,true);
                         
                         if (this.CurrentOrder != null)
                         {

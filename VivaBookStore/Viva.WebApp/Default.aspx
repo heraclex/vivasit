@@ -6,7 +6,7 @@
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="Default.aspx" class="list-group-item">All</a>
-                    <a href="Default.aspx" class="list-group-item">New Release</a>
+                    <a href="Default.aspx?NewRelease=1" class="list-group-item">New Release</a>
                     <% foreach (var category in this.Categories)
                         {%>
                     <a href="Default.aspx?categoryId=<%=category.Id%>" class="list-group-item">
@@ -56,10 +56,10 @@
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <img style="height: 200px; width: 100%; display: block;"
-                                    src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="<%=book.BookName %>">
+                                    src="<%=book.GetPictureUrl() %>" alt="<%=book.BookName %>">
                                 <div class="caption">
                                     <h4 class="pull-right">$<%=book.Price %></h4>
-                                    <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>"><%=book.BookName %></a></h4>
+                                    <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>&categoryid=<%=book.CategoryId %>"><%=book.BookName %></a></h4>
                                     <p><%=book.AuthorName %></p>
                                     <p><%=book.Description %></p>
                                     <%--  --%>
