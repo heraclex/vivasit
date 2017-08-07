@@ -10,10 +10,8 @@ using Viva.Service;
 namespace Viva.WebApp
 {
     public partial class Search : System.Web.UI.Page
-    {
-        
+    {        
         protected List<Book> Books = null;
-
 
         private readonly BookStoreService service = new BookStoreService();
         protected void Page_Load(object sender, EventArgs e)

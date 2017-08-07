@@ -234,7 +234,7 @@ namespace Viva.Service
                     {
                         if (orderItem.Remove == true)
                         {
-                            // Don't need increa index here because this item was remove
+                            // Don't need increase index here because this item was removed
                             // that means the size of orderitems was reduce
                             orderItemEntry.State = EntityState.Deleted;
                         }

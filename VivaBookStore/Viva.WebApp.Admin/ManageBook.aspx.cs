@@ -14,7 +14,10 @@ namespace Viva.WebApp.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.GenerateCategoryDropDown();
+            if (!Page.IsPostBack)
+            {
+                this.GenerateCategoryDropDown();
+            }
         }
 
         private void GenerateCategoryDropDown()
@@ -39,10 +42,8 @@ namespace Viva.WebApp.Admin
                 this.Service.InsertPicture(pic);
 
                 var newBook = new Book();
-                if (chkNewRelease.Checked == true)
-                {
-                    newBook.NewRelease = true;
-                }  else { newBook.NewRelease = false; }
+
+                newBook.NewRelease = chkNewRelease.Checked;
 
                 newBook.BookName = txtBookName.Text;
                 newBook.AuthorName = txtAuthorName.Text;

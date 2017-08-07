@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -32,6 +33,7 @@ namespace Viva.WebApp
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public Customer Login(string username, string password)
         {
+            Thread.Sleep(900);
             var customer = this.service.GetCustomerByUserName(username);
             if (customer != null && customer.Password == password)
             {

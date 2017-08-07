@@ -6,7 +6,7 @@
             <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Email</label>
+            <label class="col-sm-2 control-label required">Email</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -126,8 +126,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click"  />
-                <asp:Button ID="btnChanePass" runat="server" Text="Change Password" OnClick="btnChanePass_Click"   />
+                <asp:Button ID="btnUpdate" class="btn btn-primary" runat="server" Text="Update" OnClick="btnUpdate_Click"  />
+                <asp:Button ID="btnChanePass" class="btn btn-primary" runat="server" Text="Change Password" OnClick="btnChanePass_Click"   />
             </div>
         </div>
     </form>

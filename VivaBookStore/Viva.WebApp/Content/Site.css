@@ -52,10 +52,9 @@ body {
 footer {
     margin: 50px 0;
 }
-
+/***********************************/
 /********** Login Design ***********/
-
-
+/***********************************/
 #login-dp {
     min-width: 250px;
     padding: 14px 14px 0;
@@ -118,3 +117,13 @@ footer {
         }
 }
 /********** End Login Design ***********/
+
+
+/***********************************/
+/********** Required Fields ***********/
+/***********************************/
+label.required:after {
+    content: " *";
+    color: red;
+}
+/********** End Required Fields ***********/
