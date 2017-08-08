@@ -219,7 +219,7 @@ namespace Viva.Service
         public Order UpdateOrder(Order order)
         {
             using (var context = base.GetDbContextInstance())
-            {
+            {                
                 // Update Order
                 var orderEntry = context.Entry(order);  // Gets the entry for entity inside context
                 orderEntry.State = EntityState.Modified; // Tell EF this entity has been modified
@@ -245,7 +245,7 @@ namespace Viva.Service
                         }
                     }
                     else
-                    {
+                    {                        
                         orderItemEntry.State = EntityState.Added;
                         index++;
                     }

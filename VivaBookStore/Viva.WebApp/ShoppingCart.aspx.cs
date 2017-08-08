@@ -130,6 +130,7 @@ namespace Viva.WebApp
             var newOrder = new Order()
             {
                 CustomerId = customerId,
+                OrderItems = new List<OrderItem>(),
                 OrderStatusId = (int)OrderStatus.Pending,
                 PaymentStatusId = (int)PaymentStatus.Pending,
                 TotalPrice = book.Price
@@ -141,7 +142,7 @@ namespace Viva.WebApp
                 Quantity = 1
             };
 
-            newOrder.OrderItems = new List<OrderItem>() { newOrderItem };
+            newOrder.OrderItems.Add(newOrderItem);
             this.service.InsertOrder(newOrder);
 
             // When Insert new Order Success, add this order to CurrentOrder

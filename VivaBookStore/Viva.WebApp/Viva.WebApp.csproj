@@ -140,7 +140,6 @@
     <Content Include="About.aspx" />
     <Content Include="ChangePassWord.aspx" />
     <Content Include="ChangeProfile.aspx" />
-    <Content Include="Checkout.aspx" />
     <Content Include="ContactUs.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -226,13 +225,6 @@
     </Compile>
     <Compile Include="ChangeProfile.aspx.designer.cs">
       <DependentUpon>ChangeProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout.aspx.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout.aspx.designer.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
