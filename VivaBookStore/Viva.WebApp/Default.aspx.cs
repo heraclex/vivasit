@@ -20,25 +20,25 @@ namespace Viva.WebApp
         {
             var categoryIdFromQueryString = Request.QueryString["categoryId"];
             var NewRelease = Request.QueryString["NewRelease"];
-            {
-                // Filter By CategoryId
-                this.Categories = this.service.GetAllCategories();
+            // Filter By CategoryId
+            this.Categories = this.service.GetAllCategories();
 
-                if (string.IsNullOrEmpty(categoryIdFromQueryString))
-                { if (NewRelease==null)
-                    {
-                        this.Books = this.service.GetAllBooks(true);
-                    } else { this.Books = this.service.GetListBooksNewRelease(true); }
-                    
-                }
-                else
+            if (string.IsNullOrEmpty(categoryIdFromQueryString))
+            {
+                if (NewRelease == null)
                 {
-                    var categoryId = 0;
-                    var isConvertToIntSuccess = Int32.TryParse(categoryIdFromQueryString, out categoryId);
-                    if (isConvertToIntSuccess && categoryId > 0)
-                    {
-                        this.Books = this.service.GetListBooksByCatogery(categoryId, true);
-                    }
+                    this.Books = this.service.GetAllBooks(true);
+                }
+                else { this.Books = this.service.GetListBooksNewRelease(true); }
+
+            }
+            else
+            {
+                var categoryId = 0;
+                var isConvertToIntSuccess = Int32.TryParse(categoryIdFromQueryString, out categoryId);
+                if (isConvertToIntSuccess && categoryId > 0)
+                {
+                    this.Books = this.service.GetListBooksByCatogery(categoryId, true);
                 }
             }
         }
