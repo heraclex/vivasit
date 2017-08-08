@@ -47,7 +47,7 @@ namespace Viva.WebApp
             }
             return null;
         }
-
+                
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public bool Logout()

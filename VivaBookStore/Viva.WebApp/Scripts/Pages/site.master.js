@@ -16,6 +16,7 @@ function login(event) {
         $("#progress-bar").show();
         $("#btnSignIn").hide();
         // Send Ajax request to vivawebservice to check user/pass
+        // http://api.jquery.com/jquery.ajax/
         $.ajax({
             url: "VivaWebService.asmx/Login",
             type: "POST", // Action: POST/GET/PUT/DELETE....
@@ -24,8 +25,6 @@ function login(event) {
             dataType: "json",
             success: function (result) {
                 // This method will be triggered when server return value
-
-
                 $("#progress-bar").hide();
                 $("#btnSignIn").show();
                 // There is no customer with these user/pass
