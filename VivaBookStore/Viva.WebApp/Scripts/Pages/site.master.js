@@ -6,7 +6,7 @@ function login(event) {
     // Get username/pass from input
     var user = $("#username").val();
     var pass = $("#password").val();
-    
+
     if (username == null || username == ""
         || password == null || password == "") {
         // If user don't input user/pass, show error'
@@ -34,7 +34,7 @@ function login(event) {
                 } else {
                     // Login Success
                     $('#logindropdown').hide();
-                    $('#logoutdropdown').show();                    
+                    $('#logoutdropdown').show();
                     $('#helloText').html('Hi ' + result.d.FirstName);
                     $('#changeprofile-link').attr("href", "ChangeProfile.aspx?customerid=" + result.d.Id);
                 }
@@ -42,8 +42,37 @@ function login(event) {
             error: function (xhr, status) {
                 alert("An error occurred: " + status);
                 $("#progress-bar").hide();
-                $("#btnSignIn").show();                
+                $("#btnSignIn").show();
             }
         });
-    }    
+    }
+}
+
+function logout(event) {
+    event.preventDefault();
+
+    // Send Ajax request to vivawebservice to check user/pass
+    $.ajax({
+        url: "VivaWebService.asmx/Logout",
+        type: "POST", // Action: POST/GET/PUT/DELETE....
+        contentType: "application/json", // Content type
+        dataType: "json",
+        success: function (result) {
+            // Logout Success
+
+            alert("Logout Success");
+            //redirect to default
+            window.location = "Default.aspx";
+        },
+        error: function (xhr, status) {
+            alert("An error occurred: " + status);
+        }
+    });
+}
+
+function search(event) {
+    event.preventDefault();
+    var searchkeywork = $("#searchkeyword").val();
+    window.location.href = "/Search?searchkeyword=" + searchkeywork;
+    return false;
 }

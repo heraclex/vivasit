@@ -52,7 +52,7 @@ namespace Viva.WebApp
                         if (this.CurrentOrder != null)
                         {
                             // Update Current Order
-                            this.UpdateOrderDetails(this.CurrentOrder, book);
+                            this.UpdateCurrentOrder(this.CurrentOrder, book);
                         }
                         else
                         {
@@ -69,6 +69,8 @@ namespace Viva.WebApp
 
         protected void btnUpdateCartDetail_Click(object sender, EventArgs e)
         {
+            this.CurrentOrder.TotalPrice = 0;
+
             foreach (var orderItem in this.CurrentOrder.OrderItems)
             {
                 var isdeleted = Request.Form["deleteOrderItem_" + orderItem.Id];
@@ -81,6 +83,9 @@ namespace Viva.WebApp
                 {
                     // Get quantity data from form submit
                     orderItem.Quantity = Convert.ToInt32(Request.Form["quantityOrderItem_" + orderItem.Id]);
+
+                    // update Total Price on Order
+                    this.CurrentOrder.TotalPrice += orderItem.Book.Price * orderItem.Quantity;
                 }                
             }
 
@@ -90,13 +95,22 @@ namespace Viva.WebApp
         protected void btnSubmitOrder_Click(object sender, EventArgs e)
         {
             this.CurrentOrder.CreatedDate = DateTime.Now;
-            this.CurrentOrder.OrderStatusId = (int)OrderStatus.Processing;
+            this.CurrentOrder.OrderStatusId = (int)OrderStatus.Complete;
             this.CurrentOrder.PaymentStatusId = (int)PaymentStatus.Paid;
             this.service.UpdateOrder(this.CurrentOrder);
+
+            // Update book Quantity In Unit
+            foreach (var orderItem in this.CurrentOrder.OrderItems)
+            {
+                var book = this.service.GetBookByID(orderItem.BookId, false);
+                book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
+                this.service.UpdateBook(book);
+            }
+
             Response.Redirect("Default.aspx");
         }
 
-        private void UpdateOrderDetails(Order currentOrder, Book book)
+        private void UpdateCurrentOrder(Order currentOrder, Book book)
         {
             var existedBookItem = currentOrder.OrderItems.FirstOrDefault(bookItem => bookItem.BookId == book.Id);
             if (existedBookItem != null)

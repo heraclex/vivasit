@@ -8,7 +8,7 @@
             
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Email</label>
+            <label class="col-sm-2 control-label required">Email</label>
             
             <div class="col-sm-4">
                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" ></asp:TextBox>
@@ -146,14 +146,14 @@
                             <asp:ListItem Value="Letter">Letter</asp:ListItem>
                         </asp:CheckBoxList>
                 <div class="col-sm-4">
-                <asp:Label ID="lblContactError" runat="server" Text="" BorderColor="#CC0000"></asp:Label>   
+                <asp:Label ID="lblContactError" class="btn btn-primary" runat="server" Text="" BorderColor="#CC0000"></asp:Label>   
             </div>
             </div>
         </div>  
         
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" />
+                <asp:Button ID="btnRegister" class="btn btn-primary" runat="server" Text="Register" OnClick="btnRegister_Click" />
             </div>
         </div>
     </form>
