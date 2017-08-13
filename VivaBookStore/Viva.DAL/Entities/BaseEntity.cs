@@ -13,5 +13,7 @@ namespace Viva.DAL.Entities
         public int Id { get; set; }
 
         public DateTime? CreatedDate { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 }

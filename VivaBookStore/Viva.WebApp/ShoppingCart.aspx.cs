@@ -102,7 +102,7 @@ namespace Viva.WebApp
             // Update book Quantity In Unit
             foreach (var orderItem in this.CurrentOrder.OrderItems)
             {
-                var book = this.service.GetBookByID(orderItem.BookId, false);
+                var book = this.service.GetBookByID(orderItem.BookId);
                 book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
                 this.service.UpdateBook(book);
             }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Transactions;
+using System.Web;
 using Viva.DAL.Entities;
 
 namespace Viva.DAL.Initializers
@@ -43,6 +45,7 @@ namespace Viva.DAL.Initializers
             this.CreateCategories(context);
             this.CreateRoles(context);
             this.CreateCustomers(context);
+            this.CreateBooks(context);
         }
 
         private void CreateCategories(BookStoreDbContext context)
@@ -143,6 +146,45 @@ namespace Viva.DAL.Initializers
 
             context.SaveChanges();
         }
-        
+
+        private void CreateBooks(BookStoreDbContext context)
+        {
+            DirectoryInfo directory = new DirectoryInfo(HttpRuntime.AppDomainAppPath + "\\Content\\images\\books");
+            FileInfo[] Files = directory.GetFiles("*.png"); //Getting Png files
+            Random random = new Random();
+            foreach (FileInfo file in Files)
+            {                
+                using (var stream = file.OpenRead())
+                {                    
+                    using (var binary = new BinaryReader(stream))
+                    {
+                        var imgData = binary.ReadBytes((int)stream.Length);
+                        var pic = new Picture()
+                        {
+                            PictureBinary = imgData
+                        };
+                        var book = new Book()
+                        {
+                            BookName = file.Name.Replace(".png", string.Empty),
+                            AuthorName = "Author" + file.Name,
+                            CreatedDate = DateTime.Now,
+                            Picture = pic,
+                            PublishedYear = random.Next(2000, 2018).ToString(), // Random year: >= 1990 and < 2018
+                            CategoryId = random.Next(1, 8), // Random CategoryId: >= 1 and < 8
+                            Price = random.Next(1, 60), // Random price: >= 1 and < 60
+                            QuantityInUnit = random.Next(1, 50), // Random QuantityInUnit: >= 1 and < 50
+                            Description = "Description for" + file.Name.Replace(".png", string.Empty),
+                            Publisher = "Publisher Test",
+                            IsDelete = false,
+                            NewRelease = false,
+                            Rate = 5
+                        };
+                        context.Books.Add(book);
+                    }
+                }
+            }
+
+            context.SaveChanges();
+        }
     }
 }
