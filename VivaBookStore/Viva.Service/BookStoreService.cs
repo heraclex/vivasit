@@ -146,23 +146,23 @@ namespace Viva.Service
                                
             }
         }
-
-        public Book InsertBook(Book book)
+        
+        public Book SaveBook(Book book)
         {
             using (var context = base.GetDbContextInstance())
             {
-                context.Books.Add(book);
-                context.SaveChanges();
-            }
-            return book;
-        }
-
-        public Book UpdateBook(Book book)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                var entry = context.Entry(book);  // Gets the entry for entity inside context
-                entry.State = EntityState.Modified; // Tell EF this entity has been modified
+                if (book.Id == 0)
+                {
+                    // Add New
+                    context.Books.Add(book);
+                }
+                else
+                {
+                    // Edit
+                    var entry = context.Entry(book); 
+                    entry.State = EntityState.Modified;
+                }
+                
                 context.SaveChanges();
             }
             return book;

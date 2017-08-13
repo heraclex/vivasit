@@ -15,7 +15,6 @@ namespace Viva.WebApp.Admin
 {
     public partial class ManageBook : Common.AdminPage
     {
-        private readonly BookStoreService service = new BookStoreService();
         protected List<Book> Books = null;
         protected List<Category> Categories = null;
 
@@ -28,10 +27,10 @@ namespace Viva.WebApp.Admin
                 // Get categories to display category name on table
                 // and it is also being used in Edit/Add new Mode
                 // Therefore, this list should be always avaiable on page
-                this.Categories = this.service.GetAllCategories();
+                this.Categories = this.Service.GetAllCategories();
 
                 // get all books to display on table
-                this.Books = this.service.GetAllBooks();
+                this.Books = this.Service.GetAllBooks();
 
                 // Get bookid on query string
                 var queryBookId = Request.QueryString["bookId"];
@@ -42,7 +41,7 @@ namespace Viva.WebApp.Admin
                     // IF bookId > 0, get book from database.
                     if (bookId > 0)
                     {
-                        this.CurrentBook = this.service.GetBookByID(bookId, true);
+                        this.CurrentBook = this.Service.GetBookByID(bookId, true);
                         this.Status = PageStatus.Edit;
                     }
                     else
@@ -128,7 +127,8 @@ namespace Viva.WebApp.Admin
                 // specify new pictureid to book 
                 book.PictureId = pic.Id;
             }
-            
+
+            this.Service.SaveBook(book);
             // Reload Page to see updates on book table
             Response.Redirect("ManageBook.aspx");
         }
@@ -140,6 +140,9 @@ namespace Viva.WebApp.Admin
             {
                 this.Service.DeleteBook(bookId);
             }
+            // Reload Page to see updates on book table
+            Response.Redirect("ManageBook.aspx");
         }
+       
     }
 }
