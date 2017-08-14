@@ -12,8 +12,7 @@
     <!--Page Content-->
     <div class="row">
 
-        <% var leftPanelCssClass = this.Status == PageStatus.Default ? "col-md-12" : "col-md-7";
-        %>
+        <% var leftPanelCssClass = this.Status == PageStatus.Default ? "col-md-12" : "col-md-7"; %>
 
         <!--Book Table -->
         <div class="<%=leftPanelCssClass %>">
@@ -28,7 +27,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table id="book-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -58,6 +57,13 @@
                                 <%} %>
                             </tbody>
                         </table>
+                        
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                // Binding click event on button Sign In
+                                $('#book-table').DataTable();
+                            });
+    </script>
                     </div>
                 </div>
             </div>
@@ -162,3 +168,4 @@
         <%} %>
     </div>
 </asp:Content>
+

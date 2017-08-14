@@ -104,7 +104,7 @@ namespace Viva.WebApp
             {
                 var book = this.service.GetBookByID(orderItem.BookId);
                 book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
-                this.service.UpdateBook(book);
+                this.service.SaveBook(book);
             }
 
             Response.Redirect("Default.aspx");
