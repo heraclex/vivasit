@@ -57,13 +57,13 @@
                                 <%} %>
                             </tbody>
                         </table>
-                        
+
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 // Binding click event on button Sign In
                                 $('#book-table').DataTable();
                             });
-    </script>
+                        </script>
                     </div>
                 </div>
             </div>
@@ -117,23 +117,24 @@
                                 <!--Publisher-->
                                 <div class="form-group">
                                     <label>Publisher</label>
-                                    <asp:TextBox ID="txtPublisher" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>                                    
+                                    <asp:TextBox ID="txtPublisher" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                                 </div>
                                 <!--Published Year-->
                                 <div class="form-group">
-                                    <label>Published Year</label>                                    
+                                    <label>Published Year</label>
                                     <asp:TextBox ID="txtPublishedYear" TextMode="Number" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                                 </div>
 
                                 <!--ImageUrl-->
                                 <div class="form-group">
-                                    
+
                                     <!--Generate image in Edit Mode-->
                                     <% var imgLabel = "Image";
                                         if (this.CurrentBook.Id > 0 && this.CurrentBook.Picture != null)
-                                        { imgLabel = "Chose another image";
-                                            %>
-                                    <img class="img-thumbnail" style="max-width: 100px;" src="<%=this.CurrentBook.GetPictureUrl() %>" alt="<%=this.CurrentBook.BookName %>"><br>         
+                                        {
+                                            imgLabel = "Chose another image";
+                                    %>
+                                    <img class="img-thumbnail" style="max-width: 100px;" src="<%=this.CurrentBook.GetPictureUrl() %>" alt="<%=this.CurrentBook.BookName %>"><br>
                                     <%} %>
 
                                     <label><%=imgLabel %></label>

@@ -36,7 +36,7 @@ namespace Viva.WebApp
             if (CurrentCustomer.Password == txtCurrentPass.Text )
             {
                 CurrentCustomer.Password = txtPassword.Text;
-                this.service.UpdateCustomer(CurrentCustomer);
+                this.service.SaveCustomer(CurrentCustomer);
                 lblMessage.Text = "Update password successfully";
                 
 

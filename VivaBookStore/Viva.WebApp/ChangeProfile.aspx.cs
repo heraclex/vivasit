@@ -76,7 +76,7 @@ namespace Viva.WebApp
                 customer.HearUs = dropHear.Text;
                 customer.RoleId = 3;
                 // add new customer to databaes
-                this.service.UpdateCustomer(customer);
+                this.service.SaveCustomer(customer);
                 lblMessage.Text = "Update sucessfully";
 
                 txtFirstName.ReadOnly = true;

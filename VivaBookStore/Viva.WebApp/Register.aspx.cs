@@ -52,7 +52,7 @@ namespace Viva.WebApp
                 newCustomer.HearUs = dropHear.Text;
                 newCustomer.RoleId = 3;
                 // add new customer to databaes
-                this.Service.InsertCustomer(newCustomer);
+                this.Service.SaveCustomer(newCustomer);
                 
                 lblMessage.Text = "Register sucessfully";
 

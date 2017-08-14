@@ -21,36 +21,37 @@ namespace Viva.Service
             }
         }
 
-        public Customer InsertCustomer(Customer customer)
+        public Customer SaveCustomer(Customer customer)
         {
             using (var context = base.GetDbContextInstance())
             {
-                context.Customers.Add(customer);
+                if (customer.Id == 0)
+                {
+                    // Add New
+                    context.Customers.Add(customer);
+                }
+                else
+                {
+                    // Edit
+                    var entry = context.Entry(customer);
+                    entry.State = EntityState.Modified;
+                }
                 context.SaveChanges();
             }
             return customer;
         }
 
-        public Customer UpdateCustomer(Customer customer)
+        public Customer DeleteCustomer(int customerId)
         {
             using (var context = base.GetDbContextInstance())
             {
+                var customer = context.Customers.Find(customerId);
+                customer.IsDelete = true;
                 var entry = context.Entry(customer);  // Gets the entry for entity inside context
                 entry.State = EntityState.Modified; // Tell EF this entity has been modified
                 context.SaveChanges();
+                return customer;
             }
-            return customer;
-        }
-
-        public Customer DeleteCustomer(Customer customer)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                var entry = context.Entry(customer);  // Gets the entry for entity inside context
-                entry.State = EntityState.Deleted; // Tell EF this entity has been modified
-                context.SaveChanges();
-            }
-            return customer;
         }
 
         public Customer GetCustomerByID(int customerid)

@@ -53,7 +53,7 @@ namespace Viva.WebApp.Admin
                             NewRelease = true,
                             CategoryId = 1
                         };
-                        this.Status = PageStatus.Edit;
+                        this.Status = PageStatus.Add;
                     }
                     this.InitFormData();
                 }
