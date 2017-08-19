@@ -73,7 +73,8 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                var result = context.Customers.FirstOrDefault(x => x.UserName == username);
+                var result = context.Customers.Where(x => x.UserName == username && !x.IsDelete && x.Active)
+                    .Include(x=>x.Role).FirstOrDefault();
                 return result;
             }
         }

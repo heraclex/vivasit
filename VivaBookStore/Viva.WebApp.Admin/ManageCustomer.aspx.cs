@@ -18,6 +18,12 @@ namespace Viva.WebApp.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // If user haven't login yet, redirect to Login page
+            if (HttpContext.Current.Session["currentuser"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             if (!Page.IsPostBack)
             {
                 // Get Roles to display Role name on table
