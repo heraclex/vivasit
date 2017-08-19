@@ -5,6 +5,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
+                <%--<img style="height: 200px; width: 100%; display: block;"
+                                    src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="">--%>
                 <img class="img-responsive" src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="">              
             </div>
 

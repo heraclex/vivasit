@@ -72,7 +72,7 @@
                                 <div class="ratings">
                                     <p class="pull-right">15 reviews</p>
                                     <p>
-                                        <a href="ShoppingCart.aspx?bookid=<%=book.Id %>" >Add To Card</a>
+                                        <a href="ShoppingCart.aspx?bookid=<%=book.Id %>" >Add To Cart</a>
                                     </p>
                                 </div>
                             </div>

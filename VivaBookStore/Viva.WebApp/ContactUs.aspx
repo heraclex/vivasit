@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    
 <div class="container">
-    <p style="color: #fff;"> 
+    <p style="color: #000000;"> 
              <strong><i class="fa fa-map-marker"> We’re here to help, so don’t hesitate to get in touch – you can phone on the numbers below. You can also email us if it is most convenient for you.
 <br></i></strong>
     <div class="row">
@@ -56,17 +56,17 @@
          <div class="col-sm-2">
         <br /><br />
         <p style="margin-top: 6%; line-height: 35%"><a href="#">Address</a></p>
-        <p style="color: #fff;">
+        <p style="color: ##000000;">
             <i class="fa fa-map-marker">57 Willis Street<br>
                 Auckland 0630<br>New Zealand</i>
                      
         </p>
         <p style="margin-top: 6%; line-height: 35%"><a href="#">Phone number</a></p>
-        <p style="color: #fff;">
+        <p style="color: #000000;">
             <i class="fa fa-phone">(+064)71234536</i>
         </p>
         <p style="margin-top: 6%; line-height: 35%"><a href="#">Email Address</a></p>
-        <p style="color: #fff;">
+        <p style="color: ##000000;">
             <i class="fa fa-envelope"></i>
             Contact@vivabook.co.nz
         </p>
