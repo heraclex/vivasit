@@ -21,36 +21,37 @@ namespace Viva.Service
             }
         }
 
-        public Customer InsertCustomer(Customer customer)
+        public Customer SaveCustomer(Customer customer)
         {
             using (var context = base.GetDbContextInstance())
             {
-                context.Customers.Add(customer);
+                if (customer.Id == 0)
+                {
+                    // Add New
+                    context.Customers.Add(customer);
+                }
+                else
+                {
+                    // Edit
+                    var entry = context.Entry(customer);
+                    entry.State = EntityState.Modified;
+                }
                 context.SaveChanges();
             }
             return customer;
         }
 
-        public Customer UpdateCustomer(Customer customer)
+        public Customer DeleteCustomer(int customerId)
         {
             using (var context = base.GetDbContextInstance())
             {
+                var customer = context.Customers.Find(customerId);
+                customer.IsDelete = true;
                 var entry = context.Entry(customer);  // Gets the entry for entity inside context
                 entry.State = EntityState.Modified; // Tell EF this entity has been modified
                 context.SaveChanges();
+                return customer;
             }
-            return customer;
-        }
-
-        public Customer DeleteCustomer(Customer customer)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                var entry = context.Entry(customer);  // Gets the entry for entity inside context
-                entry.State = EntityState.Deleted; // Tell EF this entity has been modified
-                context.SaveChanges();
-            }
-            return customer;
         }
 
         public Customer GetCustomerByID(int customerid)
@@ -79,19 +80,19 @@ namespace Viva.Service
         #endregion
 
         #region Book
-        public List<Book> GetAllBooks(bool includePicture)
+        public List<Book> GetAllBooks(bool includePicture = false)
         {
             using (var context = base.GetDbContextInstance())
             {
+                var query = context.Books.Where(x => x.IsDelete == false);
                 if (includePicture)
                 {
-                    return context.Books.Include(x => x.Picture).ToList();
+                    return query.Include(x => x.Picture).ToList();
                 }
                 else
                 {
-                    return context.Books.ToList();
-                }
-                
+                    return query.ToList();
+                }                
             }
         }
 
@@ -113,7 +114,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                var query = context.Books.Where(x => x.NewRelease == true);
+                var query = context.Books.Where(x => x.IsDelete == false && x.NewRelease == true);
                 if (includePicture)
                 {
                     query = query.Include(x => x.Picture);
@@ -127,7 +128,8 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                var query = context.Books.Where(x => x.BookName.Contains(keyword) || x.AuthorName.Contains(keyword) || x.Description.Contains(keyword));
+                var query = context.Books.Where(x => x.IsDelete == false);
+                query = query.Where(x => x.BookName.Contains(keyword) || x.AuthorName.Contains(keyword) || x.Description.Contains(keyword));
                 if (includePicture)
                 {
                     query = query.Include(x => x.Picture);
@@ -137,7 +139,7 @@ namespace Viva.Service
             }
         }
      
-        public Book GetBookByID (int bookid, bool includePicture)
+        public Book GetBookByID (int bookid, bool includePicture = false)
         {
             using (var context = base.GetDbContextInstance())
             {
@@ -145,47 +147,62 @@ namespace Viva.Service
                                
             }
         }
-
-        public Book InsertBook(Book book)
+        
+        public Book SaveBook(Book book)
         {
             using (var context = base.GetDbContextInstance())
             {
-                context.Books.Add(book);
+                if (book.Id == 0)
+                {
+                    // Add New
+                    context.Books.Add(book);
+                }
+                else
+                {
+                    // Edit
+                    var entry = context.Entry(book); 
+                    entry.State = EntityState.Modified;
+                }
+                
                 context.SaveChanges();
             }
             return book;
         }
 
-        public Book UpdateBook(Book book)
+        public Book DeleteBook(int bookId)
         {
             using (var context = base.GetDbContextInstance())
             {
+                var book = context.Books.Find(bookId);
+                book.IsDelete = true;
                 var entry = context.Entry(book);  // Gets the entry for entity inside context
                 entry.State = EntityState.Modified; // Tell EF this entity has been modified
                 context.SaveChanges();
+                return book;
             }
-            return book;
-        }
-
-        public Book DeleteBook(Book book)
-        {
-            using (var context = base.GetDbContextInstance())
-            {
-                var entry = context.Entry(book);  // Gets the entry for entity inside context
-                entry.State = EntityState.Deleted; // Tell EF this entity has been modified
-                context.SaveChanges();
-            }
-            return book;
         }
         
         public Picture InsertPicture(Picture picture)
         {
-            using (var context = new BookStoreDbContext(System.Configuration.ConfigurationManager.ConnectionStrings["VivaConnection"].ConnectionString))
+            using (var context = base.GetDbContextInstance())
             {
                 context.Pictures.Add(picture);
                 context.SaveChanges();
             }
             return picture;
+        }
+
+        public Picture DeletePictureById(int pictureId)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                var picture= context.Pictures.Find(pictureId);
+                var entry = context.Entry(picture);
+                entry.State = EntityState.Deleted;
+                context.SaveChanges();
+
+                return picture;
+            }
         }
 
         public List<Category> GetAllCategories()

@@ -68,12 +68,12 @@
                 <!--Search Form-->
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" id="searchkeyword" class="form-control" style="min-width:400px" placeholder="Search title/author/description">
+                        <input type="text" id="searchkeyword" class="form-control" style="min-width: 400px" placeholder="Search title/author/description">
                     </div>
 
                     <button id="btnSubmitSearch" type="submit" class="btn btn-default">Search</button>
                 </form>
-                
+
                 <!--Login Form-->
                 <!-- https://bootsnipp.com/snippets/featured/fancy-navbar-login-sign-in-form -->
                 <ul class="nav navbar-nav navbar-right">
@@ -98,6 +98,7 @@
                             customerID = customer.Id;
                         } %>
 
+                    <!--Login Form-->
                     <li class="dropdown" id="logindropdown" style="display: <%=displayLogin%>;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                         <ul id="login-dp" class="dropdown-menu">
@@ -143,6 +144,7 @@
                         </ul>
                     </li>
 
+                    <!--Log out-->
                     <li class="dropdown" id="logoutdropdown" style="display: <%=displayLogout%>;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b id="helloText">Hi <%=customerFirstName %> </b><span class="caret"></span></a>
                         <ul id="logout-dp" class="dropdown-menu">
@@ -153,7 +155,7 @@
                             <li><a href="javascript:;" id="signout-link">Sign Out</a></li>
                         </ul>
                     </li>
-                </ul>               
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -179,12 +181,33 @@
     </div>
     <!-- /.container -->
 
+    <!-- Popup to require user have to login -->
+    <div class="modal fade" id="loginRequireModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Message</h4>
+                </div>
+                <div class="modal-body">
+                    You have to login/signin
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
             // Binding click event on button Sign In
             $("#btnSignIn").click(login);
             $("#signout-link").click(logout);
             $("#btnSubmitSearch").click(search);
+            <% if (Request.QueryString["usernotlogin"] == "true") { %>
+                $('#loginRequireModal').modal('show');
+            <%}%>
         });
     </script>
 

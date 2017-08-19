@@ -20,7 +20,7 @@ namespace Viva.WebApp
             // If user haven't login yet, redirect to Default page
             if (HttpContext.Current.Session["currentuser"] == null)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Default.aspx?usernotlogin=true");
             }
 
             this.CurrentCustomer = (Customer)HttpContext.Current.Session["currentuser"];
@@ -102,9 +102,9 @@ namespace Viva.WebApp
             // Update book Quantity In Unit
             foreach (var orderItem in this.CurrentOrder.OrderItems)
             {
-                var book = this.service.GetBookByID(orderItem.BookId, false);
+                var book = this.service.GetBookByID(orderItem.BookId);
                 book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
-                this.service.UpdateBook(book);
+                this.service.SaveBook(book);
             }
 
             Response.Redirect("Default.aspx");

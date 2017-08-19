@@ -13,22 +13,13 @@ namespace Viva.WebApp.Admin {
     public partial class ManageBook {
         
         /// <summary>
-        /// manageBookForm control.
+        /// hfBookId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm manageBookForm;
-        
-        /// <summary>
-        /// lblMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.HiddenField hfBookId;
         
         /// <summary>
         /// txtBookName control.
@@ -130,12 +121,12 @@ namespace Viva.WebApp.Admin {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnCancel control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }

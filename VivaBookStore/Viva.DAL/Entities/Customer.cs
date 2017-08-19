@@ -33,9 +33,9 @@ namespace Viva.DAL.Entities
 
         public string HearUs { get; set; }
 
-        public string CreditCardNumber { get; set; }
+        //public string CreditCardNumber { get; set; }
 
-        public string CardExpiredDate { get; set; }
+        //public string CardExpiredDate { get; set; }
 
         public bool Subscribe { get; set; }
 

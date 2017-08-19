@@ -3,81 +3,146 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Viva.DAL;
 using Viva.DAL.Entities;
+using Viva.Service;
 
 namespace Viva.WebApp.Admin
 {
     public partial class ManageBook : Common.AdminPage
     {
+        protected List<Book> Books = null;
+        protected List<Category> Categories = null;
+
+        protected Book CurrentBook = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                this.GenerateCategoryDropDown();
-            }
+                // Get categories to display category name on table
+                // and it is also being used in Edit/Add new Mode
+                // Therefore, this list should be always avaiable on page
+                this.Categories = this.Service.GetAllCategories();
+
+                // get all books to display on table
+                this.Books = this.Service.GetAllBooks();
+
+                // Get bookid on query string
+                var queryBookId = Request.QueryString["bookId"];
+                var bookId = 0;
+                var isIDValid = Int32.TryParse(queryBookId, out bookId);
+                if (isIDValid)
+                {
+                    // IF bookId > 0, get book from database.
+                    if (bookId > 0)
+                    {
+                        this.CurrentBook = this.Service.GetBookByID(bookId, true);
+                        this.Status = PageStatus.Edit;
+                    }
+                    else
+                    // ELSE: Init new book object
+                    {
+                        this.CurrentBook = new Book()
+                        {
+                            Id = 0,
+                            NewRelease = true,
+                            CategoryId = 1
+                        };
+                        this.Status = PageStatus.Add;
+                    }
+                    this.InitFormData();
+                }
+            }            
         }
 
-        private void GenerateCategoryDropDown()
+        /// <summary>
+        /// Assign current book values to controls on web page
+        /// </summary>
+        private void InitFormData()
         {
-            this.ddCategory.DataSource = this.Service.GetAllCategories();
+            // Need Hidden-Field to keep bookid at client
+            this.hfBookId.Value = this.CurrentBook.Id.ToString();
+
+            txtBookName.Text = this.CurrentBook.BookName;
+            txtAuthorName.Text = this.CurrentBook.AuthorName;
+            txtPublisher.Text = this.CurrentBook.Publisher;
+            txtPublishedYear.Text = this.CurrentBook.PublishedYear;
+            txtDescription.Value = this.CurrentBook.Description;
+            txtPrice.Text = this.CurrentBook.Price.ToString();
+            txtQuantity.Text = this.CurrentBook.QuantityInUnit.ToString();
+            chkNewRelease.Checked = this.CurrentBook.NewRelease;
+
+            // Generate category dropdown list
+            this.ddCategory.DataSource = this.Categories;
             this.ddCategory.DataTextField = "CategoryName";
             this.ddCategory.DataValueField = "Id";
             this.ddCategory.DataBind();
+
+            // Assign category Id to dropdown
+            this.ddCategory.SelectedValue = this.CurrentBook.CategoryId.ToString();
         }
-        
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var bookId = Convert.ToInt32(this.hfBookId.Value);
+            // IF bookId > 0, get book from Database
+            // ELSE, init new Book object
+            var book = bookId > 0
+                ? this.Service.GetBookByID(bookId)
+                : new Book();
+
+            book.NewRelease = chkNewRelease.Checked;
+            book.BookName = txtBookName.Text;
+            book.AuthorName = txtAuthorName.Text;
+            book.Publisher = txtPublisher.Text;
+            book.PublishedYear = txtPublishedYear.Text;
+            book.CategoryId = Convert.ToInt32(ddCategory.SelectedValue);
+            book.Description = txtDescription.Value;
+            book.Price = Convert.ToDecimal(txtPrice.Text);
+            book.QuantityInUnit = Convert.ToInt32(txtQuantity.Text);
+            book.Rate = 1;
+            book.BookName = txtBookName.Text;
+
             if (fileUploadImage.HasFile)
             {
-                string strname = fileUploadImage.FileName.ToString();
+                // PictureId is only available in Edit Mode, so have to delete before switch to new picture
+                if (book.PictureId > 0)
+                {
+                    // delete old picture
+                    this.Service.DeletePictureById(book.PictureId);
+                }
+                
                 var pic = new Picture()
                 {
                     PictureBinary = fileUploadImage.FileBytes
                 };
-
-                // Save Picture to Database
+                // add new picture to database
                 this.Service.InsertPicture(pic);
 
-                var newBook = new Book();
+                // specify new pictureid to book 
+                book.PictureId = pic.Id;
+            }
 
-                newBook.NewRelease = chkNewRelease.Checked;
-
-                newBook.BookName = txtBookName.Text;
-                newBook.AuthorName = txtAuthorName.Text;
-                newBook.Publisher = txtPublisher.Text;
-                newBook.PublishedYear = txtPublishedYear.Text;
-                newBook.CategoryId = Convert.ToInt32(ddCategory.SelectedValue);
-                newBook.Description = txtDescription.Value;
-                // assign picture to this new book
-                newBook.PictureId = pic.Id;
-                newBook.Price = Convert.ToDecimal(txtPrice.Text);
-                newBook.QuantityInUnit = Convert.ToInt32(txtQuantity.Text);
-                newBook.Rate = 1;
-                newBook.BookName = txtBookName.Text;
-
-                // add new book to databaes
-                this.Service.InsertBook(newBook);
-                txtBookName.Text ="";
-                txtAuthorName.Text = "";
-                txtPublisher.Text = "";
-                txtPublishedYear.Text = "";
-                txtDescription.Value = "";
-                txtPrice.Text = "";
-                txtQuantity.Text = "";
-                chkNewRelease.Checked = true;
-                lblMessage.Text = "Add new book successfully";
-            }            
+            this.Service.SaveBook(book);
+            // Reload Page to see updates on book table
+            Response.Redirect("ManageBook.aspx");
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        protected void btnDelete_Click(object sender, EventArgs e)
         {
-            txtBookName.Text = string.Empty;
-            txtAuthorName.Text = string.Empty;
-            txtDescription.Value = string.Empty;
-            txtPrice.Text = string.Empty;
+            var bookId = Convert.ToInt32(this.hfBookId.Value);
+            if (bookId > 0)
+            {
+                this.Service.DeleteBook(bookId);
+            }
+            // Reload Page to see updates on book table
+            Response.Redirect("ManageBook.aspx");
         }
+       
     }
 }
