@@ -22,13 +22,22 @@ namespace Viva.WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtKeyword;
         
         /// <summary>
-        /// dropPrice control.
+        /// fromPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropPrice;
+        protected global::System.Web.UI.WebControls.DropDownList fromPrice;
+        
+        /// <summary>
+        /// toPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList toPrice;
         
         /// <summary>
         /// txtPublishedYear control.

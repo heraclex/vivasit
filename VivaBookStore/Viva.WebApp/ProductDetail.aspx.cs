@@ -28,15 +28,10 @@ namespace Viva.WebApp
                 if (isConvertToIntSuccess == true && bookid > 0)
                 {
                    this.book = this.service.GetBookByID(bookid,true);
-                    this.RelatedBooks = this.service.GetListBooksByCatogery(categoryid,true);
+                   this.RelatedBooks = this.service.GetListBooksByCatogery(categoryid,true);
                 }
             }          
             
-        }
-        protected string GetPictureUrlFromBytes(byte[] pictureBinary)
-        {
-            string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
-            return "data:image/png;base64," + base64String;
         }
     }
 }
