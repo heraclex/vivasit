@@ -166,12 +166,12 @@ namespace Viva.DAL.Initializers
                         var book = new Book()
                         {
                             BookName = file.Name.Replace(".png", string.Empty),
-                            AuthorName = "Author" + file.Name,
+                            AuthorName = "Author" + file.Name.Replace(".png", string.Empty),
                             CreatedDate = DateTime.Now,
                             Picture = pic,
                             PublishedYear = random.Next(2000, 2018).ToString(), // Random year: >= 1990 and < 2018
                             CategoryId = random.Next(1, 8), // Random CategoryId: >= 1 and < 8
-                            Price = random.Next(1, 60), // Random price: >= 1 and < 60
+                            Price = random.Next(20, 60), // Random price: >= 1 and < 60
                             QuantityInUnit = random.Next(1, 50), // Random QuantityInUnit: >= 1 and < 50
                             Description = "Description for" + file.Name.Replace(".png", string.Empty),
                             Publisher = "Publisher Test",

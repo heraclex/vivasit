@@ -335,6 +335,16 @@ namespace Viva.Service
                 return context.Recommendations.Include(x => x.Customer).ToList();
             }
         }
+
+        public List<Recommendation> GetAllRecommendationsByBookID(int bookid)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Recommendations.Where(x =>
+               x.BookId == bookid).Include(x=>x.Customer).ToList();
+               
+            }
+        }
         public Recommendation InsertRecommendation(Recommendation commend)
         {
             using (var context = base.GetDbContextInstance())

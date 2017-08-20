@@ -18,7 +18,6 @@
                          <div class="col-sm-2">Author:</div>
                          <div class="col-sm-4"><%=book.AuthorName %></div>
                      </div><br />
-
                      <div class="form-group">
                          <div class="col-sm-2">Description:</div>
                          <div class="col-sm-10"><%=book.Description %></div>
@@ -34,12 +33,80 @@
                      <div class="form-group">
                          <div class="col-sm-2">Published Year:</div>
                          <div class="col-sm-10"><%=book.PublishedYear%></div>
-                     </div><br />
+                     </div>
                 </div>                
                 
-            </div>
+                <div class="row"></div>
+                <%--List recommendation--%>
+                <div class="row">
+                    <%if (HttpContext.Current.Session["currentuser"] != null)
+                        {  %>
+                    <form runat="server">
+                        <div class="form-group">
+                            <div class="col-sm-2">Your comment</div>
+                            <div class="col-sm-10">
+                                <asp:TextBox ID="txtComment" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>                                
+                            </div>
+                        </div>
 
+
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtComment" ForeColor="#CC0000"></asp:RequiredFieldValidator>                         
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">                                
+                                <asp:Button ID="btnSend" class="btn btn-primary" runat="server" Text="Send" OnClick="btnSend_Click" />
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10">                                
+                                <asp:Label ID="lblnotice" runat="server" Text="" ForeColor="#3366FF"></asp:Label> 
+                            </div>
+                        </div>
+                    </form>
+                    <%}    else    { %>
+                    <div class="form-group">
+                            <div class="col-sm-6">
+                                <h5>Please log in to give the feedback. </h5></div>
+                            </div>
+                    
+                    <%} %>
+                </div>
+
+            </div>
+           
+    
         </div>
+         <br /><br />
+        <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Date Time</th>
+                        <th>User name</th>
+                        <th>Recommendation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%foreach (var Recommendation in this.Recommendations) %>
+                    <%{ %>
+                    <tr>
+                        <td><%=Recommendation.CreatedDate %></td>
+                        <td><%=Recommendation.Customer.UserName %></td>
+                        <td><%=Recommendation.Comment %></td>
+                                               
+                    <%} %>
+                </tbody>
+            </table>
+        </div>
+    </div>
         </div>
 
         <!-- /.row -->           
@@ -47,21 +114,5 @@
               
                
             
-        <!-- Related Projects Row -->
-        <div class="row">
-            
-            <div class="col-lg-12">
-                <h3 class="page-header">Related Projects</h3>
-            </div>
-            <% foreach (var Relatedbook in this.RelatedBooks) %>
-                    <%{ %>
-            <div class="col-sm-3">
-                <a href="ProductDetail.aspx?bookid=<%=Relatedbook.Id %>&categoryid=<%=Relatedbook.CategoryId %>">
-                    <img class="img-responsive portfolio-item" src="<%=this.GetPictureUrlFromBytes(Relatedbook.Picture.PictureBinary) %>" alt="<%=Relatedbook.BookName %>">
-                </a>
-            </div>
-           
-            <%} %>
-        </div>
-        <!-- /.row -->
+        
 </asp:Content>

@@ -15,20 +15,20 @@ namespace Viva.WebApp
         private readonly BookStoreService service = new BookStoreService();
         protected Book book = null;
         protected List<Book> RelatedBooks = null;
+        protected List<Recommendation> Recommendations = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             var bookidString = Request.QueryString["bookid"];
-            var categoryString = Request.QueryString["categoryid"];
-            if (bookidString != null && categoryString != null)
+             if (bookidString != null )
             {
-                var bookid = 0; var categoryid = 0;
+                var bookid = 0;
                 var isConvertToIntSuccess = Int32.TryParse(bookidString, out bookid);
-                var isConvertCategory= Int32.TryParse(bookidString, out categoryid);
+               
                 if (isConvertToIntSuccess == true && bookid > 0)
                 {
                    this.book = this.service.GetBookByID(bookid,true);
-                    this.RelatedBooks = this.service.GetListBooksByCatogery(categoryid,true);
+                    this.Recommendations = this.service.GetAllRecommendationsByBookID(bookid);
                 }
             }          
             
@@ -37,6 +37,22 @@ namespace Viva.WebApp
         {
             string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
             return "data:image/png;base64," + base64String;
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.Session["currentuser"] != null)
+            {
+                var customer = (Customer)HttpContext.Current.Session["currentuser"];
+                var newCommend = new Recommendation();
+                newCommend.CustomerId = customer.Id;
+                newCommend.BookId = this.book.Id;
+                newCommend.Comment = txtComment.Text;
+                this.service.InsertRecommendation(newCommend);
+                lblnotice.Text = "Thanks for your recommendation";
+                txtComment.Text = "";
+                this.Recommendations = this.service.GetAllRecommendationsByBookID(this.book.Id);
+            }
         }
     }
 }

@@ -38,8 +38,8 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>DateTime</th>
-                        <th>Username</th>
+                        <th>Date Time</th>
+                        <th>User name</th>
                         <th>Recommendation</th>
                     </tr>
                 </thead>

@@ -59,7 +59,7 @@
                                 src="<%=book.GetPictureUrl() %>" alt="<%=book.BookName %>">
                             <div class="caption">
                                 <h4 class="pull-right">$<%=book.Price %></h4>
-                                <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>&categoryid=<%=book.CategoryId %>"><%=book.BookName %></a></h4>
+                                <h4><a href="ProductDetail.aspx?bookid=<%=book.Id %>"><%=book.BookName %></a></h4>
                                 <p><%=book.AuthorName %></p>
                                 <p><%=book.Description %></p>
                             </div>
