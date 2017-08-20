@@ -21,7 +21,7 @@ namespace Viva.WebApp
                 var searchKeyword = Request.QueryString["searchkeyword"];
                 txtKeyword.Text = searchKeyword;
                 lblSearchNotice.Text = "Result for " + "'" + txtKeyword.Text + "'";
-                this.Books = this.service.GetListBooksByKeyword(searchKeyword, true);
+                this.Books = this.service.SearchBooks(searchKeyword);
             }
         }
 
@@ -34,17 +34,10 @@ namespace Viva.WebApp
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string keyword = txtKeyword.Text;
-            //Decimal pricefrom; Decimal priceto;
-            //switch(Convert.ToDecimal(dropPrice.SelectedValue))
-            //{
-            //    case 2: pricefrom = 0; priceto = 19; break;
-            //    case 3: pricefrom = 20; priceto = 39; break;
-            //    case 4: pricefrom = 40; priceto = 40; break;
-            //    default: pricefrom = 40; priceto = 40; break;
-            //}
             lblSearchNotice.Text = "Result for " + "'" + txtKeyword.Text + "'";
-            this.Books = this.service.GetListBooksByKeyword(keyword, true);
-            
+            var fromPrice = Convert.ToDecimal(this.fromPrice.SelectedValue);
+            var toPrice = Convert.ToDecimal(this.toPrice.SelectedValue);
+            this.Books = this.service.SearchBooks(keyword, fromPrice, toPrice, this.txtPublishedYear.Text);            
         }
     }
 }

@@ -15,13 +15,25 @@
 
                         Price range
                         <br />
-                        <div>
-                            <asp:DropDownList CssClass="form-control" ID="dropPrice" runat="server">
-                                <asp:ListItem Value="1">All</asp:ListItem>
-                                <asp:ListItem Value="2">Under $20</asp:ListItem>
-                                <asp:ListItem Value="3">$20 to $40</asp:ListItem>
-                                <asp:ListItem Value="4">$40+</asp:ListItem>
-                            </asp:DropDownList>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>From</label>
+                                <asp:DropDownList CssClass="form-control" ID="fromPrice" runat="server">
+                                    <asp:ListItem Value="0">0</asp:ListItem>
+                                    <asp:ListItem Value="20">$20</asp:ListItem>
+                                    <asp:ListItem Value="40">$40</asp:ListItem>
+                                    <asp:ListItem Value="60">$60</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-6">
+                                <label>To</label>
+                                <asp:DropDownList CssClass="form-control" ID="toPrice" runat="server">
+                                    <asp:ListItem Value="20">$20</asp:ListItem>
+                                    <asp:ListItem Value="40">$40</asp:ListItem>
+                                    <asp:ListItem Value="60">$60</asp:ListItem>
+                                    <asp:ListItem Value="80">$80</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
                         </div>
                         <br />
                         Published Year

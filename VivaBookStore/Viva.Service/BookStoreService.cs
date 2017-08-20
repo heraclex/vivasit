@@ -125,18 +125,26 @@ namespace Viva.Service
             }
         }
 
-        public List<Book> GetListBooksByKeyword(string keyword, bool includePicture)
+        public List<Book> SearchBooks(string keyword, decimal? fromPrice = null, decimal? toPrice = null, string publicYear = "")
         {
             using (var context = base.GetDbContextInstance())
             {
                 var query = context.Books.Where(x => x.IsDelete == false);
-                query = query.Where(x => x.BookName.Contains(keyword) || x.AuthorName.Contains(keyword) || x.Description.Contains(keyword));
-                if (includePicture)
+                query = query.Where(x => !x.IsDelete && x.BookName.Contains(keyword) || x.AuthorName.Contains(keyword) || x.Description.Contains(keyword));
+
+                // Add price range to search criteria
+                if ((fromPrice.HasValue && toPrice.HasValue) && (fromPrice < toPrice))
                 {
-                    query = query.Include(x => x.Picture);
+                    query = query.Where(x => x.Price >= fromPrice.Value && x.Price <= toPrice.Value);
                 }
 
-                return query.ToList();
+                // Add price range to search criteria
+                if (!string.IsNullOrEmpty(publicYear))
+                {
+                    query = query.Where(x => x.PublishedYear == publicYear);
+                }
+
+                return query.Include(x=>x.Picture).ToList();
             }
         }
      

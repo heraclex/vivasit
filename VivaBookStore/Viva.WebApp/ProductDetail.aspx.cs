@@ -38,21 +38,5 @@ namespace Viva.WebApp
             string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
             return "data:image/png;base64," + base64String;
         }
-
-        protected void btnSend_Click(object sender, EventArgs e)
-        {
-            if (HttpContext.Current.Session["currentuser"] != null)
-            {
-                var customer = (Customer)HttpContext.Current.Session["currentuser"];
-                var newCommend = new Recommendation();
-                newCommend.CustomerId = customer.Id;
-                newCommend.BookId = this.book.Id;
-                newCommend.Comment = txtComment.Text;
-                this.service.InsertRecommendation(newCommend);
-                lblnotice.Text = "Thanks for your recommendation";
-                txtComment.Text = "";
-                this.Recommendations = this.service.GetAllRecommendationsByBookID(this.book.Id);
-            }
-        }
     }
 }
