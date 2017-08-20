@@ -332,7 +332,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                return context.Recommendations.Include(x => x.Customer).ToList();
+                return context.Recommendations.Include(x => x.Customer).Include(x=>x.Book).ToList();
             }
         }
 

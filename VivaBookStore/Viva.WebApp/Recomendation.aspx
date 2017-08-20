@@ -39,6 +39,7 @@
                 <thead>
                     <tr>
                         <th>Date Time</th>
+                        <th>Book Name</th>
                         <th>User name</th>
                         <th>Recommendation</th>
                     </tr>
@@ -48,6 +49,7 @@
                     <%{ %>
                     <tr>
                         <td><%=Recommendation.CreatedDate %></td>
+                        <td><%=Recommendation.Book != null ? Recommendation.Book.BookName : "General Services" %></td>
                         <td><%=Recommendation.Customer.UserName %></td>
                         <td><%=Recommendation.Comment %></td>
                                                
