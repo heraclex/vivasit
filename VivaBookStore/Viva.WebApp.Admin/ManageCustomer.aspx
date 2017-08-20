@@ -151,9 +151,7 @@
                                     <% // only diplay delete button in Edit Mode
                                         if (this.Status == PageStatus.Edit && this.CurrentCustomer.Id > 0)
                                         {%>
-                                    <div class="col-md-4">
-                                        <asp:Button ID="btnDelete" class="btn btn-danger" runat="server" Text="Delete" OnClick="btnDelete_Click" />
-                                    </div>
+                                   
                                     <%} %>
                                 </div>
                             </form>

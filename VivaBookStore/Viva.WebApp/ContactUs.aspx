@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <div>
-                    <asp:Button ID="btnContact" runat="server" Text="Send" OnClick="btnContact_Click" />
+                    <asp:Button ID="btnContact" runat="server" class="btn btn-primary" Text="Send" OnClick="btnContact_Click" />
                 </div>
             </div>
 
@@ -52,9 +52,11 @@
         </form>
 
     </div>
+        
         <div class="col-sm-1"></div>
          <div class="col-sm-2">
-        <br /><br />
+             <h4>VIVA Bookshop</h4>
+        
         <p style="margin-top: 6%; line-height: 35%"><a href="#">Address</a></p>
         <p style="color: ##000000;">
             <i class="fa fa-map-marker">57 Willis Street<br>

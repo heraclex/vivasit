@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button ID="btnCommend" runat="server" Text="Send" OnClick="btnCommend_Click"  />
+                <asp:Button ID="btnCommend" class="btn btn-primary" runat="server" Text="Send" OnClick="btnCommend_Click"  />
             </div>
         </div>
            

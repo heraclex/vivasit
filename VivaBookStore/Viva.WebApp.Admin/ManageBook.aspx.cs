@@ -114,27 +114,33 @@ namespace Viva.WebApp.Admin
             book.Rate = 1;
             book.BookName = txtBookName.Text;
 
+            // keep this pictureID to delete it right after insert a new one
+            var currentPictureId = book.PictureId;
+
             if (fileUploadImage.HasFile)
             {
-                // PictureId is only available in Edit Mode, so have to delete before switch to new picture
-                if (book.PictureId > 0)
-                {
-                    // delete old picture
-                    this.Service.DeletePictureById(book.PictureId);
-                }
-                
                 var pic = new Picture()
                 {
                     PictureBinary = fileUploadImage.FileBytes
                 };
-                // add new picture to database
-                this.Service.InsertPicture(pic);
+
+                // add new picture to database, Also update picture pbject to book object
+                book.Picture = this.Service.InsertPicture(pic);
 
                 // specify new pictureid to book 
                 book.PictureId = pic.Id;
             }
 
+            // update these information to book table
             this.Service.SaveBook(book);
+
+            // PictureId is only available in Edit Mode, so have to delete before switch to new picture
+            if (currentPictureId != book.PictureId)
+            {
+                // delete old picture on picture table
+                this.Service.DeletePictureById(currentPictureId);
+            }
+
             // Reload Page to see updates on book table
             Response.Redirect("ManageBook.aspx");
         }

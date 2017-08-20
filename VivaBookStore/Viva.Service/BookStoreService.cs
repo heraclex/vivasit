@@ -81,6 +81,15 @@ namespace Viva.Service
         #endregion
 
         #region Book
+
+        public int GetReviewsByBookId(int bookId)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                return context.Recommendations.Count(x => x.BookId.HasValue && x.BookId.Value == bookId);
+            }
+        }
+
         public List<Book> GetAllBooks(bool includePicture = false)
         {
             using (var context = base.GetDbContextInstance())
@@ -133,7 +142,7 @@ namespace Viva.Service
                 query = query.Where(x => !x.IsDelete && x.BookName.Contains(keyword) || x.AuthorName.Contains(keyword) || x.Description.Contains(keyword));
 
                 // Add price range to search criteria
-                if ((fromPrice.HasValue && toPrice.HasValue) && (fromPrice < toPrice))
+                if ((fromPrice.HasValue && toPrice.HasValue) && (fromPrice <= toPrice))
                 {
                     query = query.Where(x => x.Price >= fromPrice.Value && x.Price <= toPrice.Value);
                 }
@@ -225,13 +234,22 @@ namespace Viva.Service
         #endregion
 
         #region Orders
-        public List<Order> GetAllOrders()
+        public List<Order> GetAllOrders(int? customerId = null)
         {
             using (var context = base.GetDbContextInstance())
             {
-                return context.Orders.Include(x => x.OrderItems).ToList();
+                var query = context.Orders.Where(x => !x.IsDelete);
+
+                // If customerID has value and the value greter than 0, adding more condition on query
+                if (customerId.HasValue && customerId.Value > 0)
+                {
+                    query = query.Where(x=>x.CustomerId == customerId.Value);
+                }
+
+                return query.Include(x => x.OrderItems).Include(x=>x.Customer).ToList();
             }
         }
+
         public Order InsertOrder(Order newOrder)
         {
             using (var context = base.GetDbContextInstance())
@@ -240,6 +258,19 @@ namespace Viva.Service
                 context.SaveChanges();
             }
             return newOrder;
+        }
+
+        public Order ChangeStatus(Order order)
+        {
+            using (var context = base.GetDbContextInstance())
+            {
+                
+                    var entry = context.Entry(order);
+                    entry.State = EntityState.Modified;
+                
+                context.SaveChanges();
+            }
+            return order;
         }
 
         public Order UpdateOrder(Order order)
@@ -321,7 +352,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                var result = context.Orders.Where(x => x.Id == orderid).Include(x => x.OrderItems).FirstOrDefault();
+                var result = context.Orders.Where(x => x.Id == orderid).Include(x => x.OrderItems).Include(x=>x.Customer).FirstOrDefault();
                 if (result != null && result.OrderItems.Count > 0)
                 {
                     // Get Book detail

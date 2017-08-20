@@ -26,6 +26,8 @@ namespace Viva.DAL.Entities
         /// <summary>
         /// Cancelled
         /// </summary>
-        Cancelled = 40
+        Cancelled = 40,
+            
+        Deliveried = 50
     }
 }

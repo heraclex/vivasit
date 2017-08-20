@@ -43,10 +43,10 @@ namespace Viva.WebApp
             }
         }
 
-        protected string GetPictureUrlFromBytes(byte[] pictureBinary)
+
+        protected int GetReviewsByBookId(int bookId)
         {
-            string base64String = Convert.ToBase64String(pictureBinary, 0, pictureBinary.Length);
-            return "data:image/png;base64," + base64String;
+            return this.service.GetReviewsByBookId(bookId);
         }
     }
 }

@@ -57,10 +57,10 @@
                                 <%} %>
                             </tbody>
                         </table>
-
+                       
                         <script type="text/javascript">
                             $(document).ready(function () {
-                                // Binding click event on button Sign In
+                              //paging  
                                 $('#book-table').DataTable();
                             });
                         </script>
