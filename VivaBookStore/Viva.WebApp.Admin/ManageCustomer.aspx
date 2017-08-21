@@ -41,18 +41,20 @@
                             <tbody>
                                 <%foreach (var customer in this.Customers) %>
                                 <%{ %>
-                                <tr>
+                                    <tr>
                                     <td><%=customer.Id %></td>
                                     <td><%=customer.FirstName %></td>
                                     <td><%=customer.LastName %></td>
                                     <td><%=customer.UserName %></td>
-                                    <td><input type="checkbox" disabled checked="<%=customer.Active %>"></td></td>
+                                    <td>
+                                        <input type="checkbox" disabled <%if (customer.Active){%> checked <%} %> />
+                                    </td>
                                     <td>
                                         <a class="btn btn-success btn-xs" href="ManageCustomer.aspx?customerId=<%=customer.Id %>">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>
-
+                                    </tr>
                                     <%} %>
                             </tbody>
                         </table>
