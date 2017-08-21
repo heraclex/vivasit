@@ -110,7 +110,7 @@ namespace Viva.Service
         {
             using (var context = base.GetDbContextInstance())
             {
-                var query = context.Books.Where(x => x.CategoryId == Categoryid);
+                var query = context.Books.Where(x => x.IsDelete == false && x.CategoryId == Categoryid);
                 if (includePicture)
                 {
                     query = query.Include(x => x.Picture);
