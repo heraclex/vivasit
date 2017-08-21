@@ -440,8 +440,6 @@ namespace Viva.Service
                 return context.Customers.Any(
                     u=>u.UserName.Equals(username) && password.Equals(password));
             }
-        }
-
-        
+        }        
     }
 }

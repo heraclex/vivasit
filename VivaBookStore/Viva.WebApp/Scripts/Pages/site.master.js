@@ -34,7 +34,7 @@ function login(event) {
                     // Login Success
                     $('#logindropdown').hide();
                     $('#logoutdropdown').show();
-                    $('#helloText').html('Hi ' + result.d.FirstName);
+                    $('#helloText').html('Hi ' + result.d.UserName);
                     $('#changeprofile-link').attr("href", "ChangeProfile.aspx?customerid=" + result.d.Id);
                 }
             },
