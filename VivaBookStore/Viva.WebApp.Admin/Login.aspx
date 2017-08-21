@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Viva Dashboar Login</title>
+    <title>Viva Dashboard Login</title>
     <!-- Bootstrap Core CSS -->
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom Fonts -->
