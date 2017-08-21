@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                                                <div class="help-block text-right"><a href="javascript:;">Forget the password ?</a></div>
+                                                <div class="help-block text-right"><a href="javascript:;">Forgot the password ?</a></div>
                                             </div>
                                             <div class="form-group">
                                                 <button id="btnSignIn" class="btn btn-primary btn-block">Sign in</button>

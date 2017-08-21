@@ -107,7 +107,7 @@ namespace Viva.WebApp
                     book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
                     this.service.SaveBook(book);
                 }
-
+                
                 Response.Redirect("CustomerOrders.aspx");
             }
             Response.Redirect("Default.aspx");

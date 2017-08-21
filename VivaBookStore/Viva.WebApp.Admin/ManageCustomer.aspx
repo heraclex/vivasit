@@ -94,7 +94,8 @@
                                 <div class="form-group">
                                     <label>Password</label><asp:Label ID="Label2" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtPassword"  type="password" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
-                                </div>
+       
+                                    </div>
                                 <div class="form-group">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPassword" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
