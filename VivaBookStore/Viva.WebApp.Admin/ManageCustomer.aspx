@@ -47,7 +47,7 @@
                                     <td><%=customer.LastName %></td>
                                     <td><%=customer.UserName %></td>
                                     <td>
-                                        <input type="checkbox" disabled <%if (customer.Active){%> checked <%} %> />
+                                        <input type="checkbox" disabled <%if (customer.Active==true){%> checked <%} %> />
                                     </td>
                                     <td>
                                         <a class="btn btn-success btn-xs" href="ManageCustomer.aspx?customerId=<%=customer.Id %>">

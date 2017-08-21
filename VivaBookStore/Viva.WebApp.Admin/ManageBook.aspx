@@ -51,7 +51,7 @@
                                     <td><%=book.QuantityInUnit %></td>
                                     <td><%=this.Categories.First(x=>x.Id == book.CategoryId).CategoryName %></td>
                                     <td>
-                                        <input type="checkbox" disabled <%if (book.NewRelease){%> checked <%} %> /></td>
+                                        <input type="checkbox" disabled      <%if (book.NewRelease==true){%> checked <%} %> /></td>
                                     <td>
                                         <a class="btn btn-success btn-xs" href="ManageBook.aspx?bookid=<%=book.Id %>">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>

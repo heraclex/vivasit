@@ -24,7 +24,10 @@ namespace Viva.WebApp.Admin
 
             if (!Page.IsPostBack)
             {
-                this.ddCustomer.DataSource = this.Service.GetAllCustomers();
+                var customerList = this.Service.GetAllCustomers();
+                customerList.Insert(0, new Customer() { Id=0, FirstName = "All" });
+
+                this.ddCustomer.DataSource = customerList;
                 this.ddCustomer.DataTextField = "FirstName";
                 this.ddCustomer.DataValueField = "Id";
                 this.ddCustomer.DataBind();

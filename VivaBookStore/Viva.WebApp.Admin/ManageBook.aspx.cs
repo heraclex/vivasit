@@ -134,8 +134,9 @@ namespace Viva.WebApp.Admin
             // update these information to book table
             this.Service.SaveBook(book);
 
-            // PictureId is only available in Edit Mode, so have to delete before switch to new picture
-            if (currentPictureId != book.PictureId)
+            // PictureId is only available in Edit Mode (currentPictureId > 0), 
+            // so we have to delete old picture in database
+            if (currentPictureId > 0 && currentPictureId != book.PictureId)
             {
                 // delete old picture on picture table
                 this.Service.DeletePictureById(currentPictureId);

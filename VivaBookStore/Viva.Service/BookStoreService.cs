@@ -234,16 +234,16 @@ namespace Viva.Service
         #endregion
 
         #region Orders
-        public List<Order> GetAllOrders(int? customerId = null)
+        public List<Order> GetAllOrders(int customerId = 0)
         {
             using (var context = base.GetDbContextInstance())
             {
-                var query = context.Orders.Where(x => !x.IsDelete);
+                var query = context.Orders.Where(x => !x.IsDelete && x.OrderStatusId != (int)OrderStatus.Pending);
 
-                // If customerID has value and the value greter than 0, adding more condition on query
-                if (customerId.HasValue && customerId.Value > 0)
+                // If customerID greter than 0, adding more condition on query
+                if (customerId > 0)
                 {
-                    query = query.Where(x=>x.CustomerId == customerId.Value);
+                    query = query.Where(x=>x.CustomerId == customerId);
                 }
 
                 return query.Include(x => x.OrderItems).Include(x=>x.Customer).ToList();
@@ -313,7 +313,7 @@ namespace Viva.Service
             return order;
         }
 
-        public List<Order> GetCompeltedOrdersByCustomer(int customerId)
+        public List<Order> GetCompletedOrdersByCustomer(int customerId)
         {
             using (var context = base.GetDbContextInstance())
             {

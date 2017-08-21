@@ -33,7 +33,7 @@ namespace Viva.WebApp
                 this.SelectedOrder = this.service.GetOrderByID(Convert.ToInt32(viewdetailorderId));
             }
 
-            this.GridViewCustomerOrders.DataSource = this.service.GetCompeltedOrdersByCustomer(this.CurrentCustomer.Id);
+            this.GridViewCustomerOrders.DataSource = this.service.GetCompletedOrdersByCustomer(this.CurrentCustomer.Id);
             this.GridViewCustomerOrders.DataBind();
         }      
 
