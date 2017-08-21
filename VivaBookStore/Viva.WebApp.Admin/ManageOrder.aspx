@@ -86,7 +86,7 @@
                                 <asp:HiddenField ID="hfOrderId" runat="server" />
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Order (ID:<%=this.CurrentOrder.Id %>) Detail</h3>
+                                        <h3 class="panel-title">The detail of Order <%=this.CurrentOrder.Id %></h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">

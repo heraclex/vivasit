@@ -7,7 +7,7 @@
             <div class="col-md-4">
                 <%--<img style="height: 200px; width: 100%; display: block;"
                                     src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="">--%>
-                <img class="img-responsive" src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="">              
+                <img class="img-responsive" style="max-height:400px;max-width:200px" src="<%=this.GetPictureUrlFromBytes(book.Picture.PictureBinary) %>" alt="">              
             </div>
 
             <div class="col-md-8">
