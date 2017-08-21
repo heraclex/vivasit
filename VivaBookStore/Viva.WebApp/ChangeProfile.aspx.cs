@@ -14,32 +14,35 @@ namespace Viva.WebApp
         protected Customer customer = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // If user haven't login yet, redirect to Default page
-            if (HttpContext.Current.Session["currentuser"] == null)
+            if (!Page.IsPostBack)
             {
-                Response.Redirect("Default.aspx?usernotlogin=true");
-            }
-
-            var customeridString = Request.QueryString["customerid"];
-            if (customeridString != null)
-            {
-                var customerid = 0;
-                var isConvertToIntSuccess = Int32.TryParse(customeridString, out customerid);
-                if (isConvertToIntSuccess == true && customerid > 0)
+                // If user haven't login yet, redirect to Default page
+                if (HttpContext.Current.Session["currentuser"] == null)
                 {
-                    this.customer = this.service.GetCustomerByID(customerid);
-                    txtEmail.Text = customer.EmailAddress;
-                    txtUsename.Text = customer.UserName;
-                    txtFirstName.Text= customer.FirstName ;
-                    txtSurName.Text= customer.LastName ;
-                    txtCity.Text= customer.City ;
-                    txtStreet.Text= customer.Address;
-                    txtSurburb.Text=customer.Surburb ;
-                    txtZipcode.Text = customer.Zipcode;
-                    txtPhone.Text = customer.PhoneNumber ;
-                    chklistContact.Text = customer.HowContactYou ;
-                    dropHear.Text = customer.HearUs ;
-                    hiddenFieldCustomerId.Value = customer.Id.ToString();
+                    Response.Redirect("Default.aspx?usernotlogin=true");
+                }
+
+                var customeridString = Request.QueryString["customerid"];
+                if (customeridString != null)
+                {
+                    var customerid = 0;
+                    var isConvertToIntSuccess = Int32.TryParse(customeridString, out customerid);
+                    if (isConvertToIntSuccess == true && customerid > 0)
+                    {
+                        this.customer = this.service.GetCustomerByID(customerid);
+                        txtEmail.Text = customer.EmailAddress;
+                        txtUsename.Text = customer.UserName;
+                        txtFirstName.Text = customer.FirstName;
+                        txtSurName.Text = customer.LastName;
+                        txtCity.Text = customer.City;
+                        txtStreet.Text = customer.Address;
+                        txtSurburb.Text = customer.Surburb;
+                        txtZipcode.Text = customer.Zipcode;
+                        txtPhone.Text = customer.PhoneNumber;
+                        chklistContact.Text = customer.HowContactYou;
+                        dropHear.Text = customer.HearUs;
+                        hiddenFieldCustomerId.Value = customer.Id.ToString();
+                    }
                 }
             }
         }
@@ -84,6 +87,7 @@ namespace Viva.WebApp
                 txtCity.ReadOnly = true;
                 txtStreet.ReadOnly = true;
                 txtSurburb.ReadOnly = true;
+                txtZipcode.ReadOnly = true;
                 txtPhone.ReadOnly = true;
                 btnUpdate.Visible = true;
                 btnSubmit.Visible = false;
@@ -108,5 +112,6 @@ namespace Viva.WebApp
         {
             Response.Redirect("ChangePassWord.aspx");
         }
+       
     }
 }

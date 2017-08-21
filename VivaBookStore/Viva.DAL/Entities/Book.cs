@@ -6,10 +6,10 @@ namespace Viva.DAL.Entities
 {
     public class Book : BaseEntity
     {
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, MinimumLength = 1)]
         public string BookName { get; set; }
 
-        [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, MinimumLength = 1)]
         public string AuthorName { get; set; }
 
         public string Publisher { get; set; }

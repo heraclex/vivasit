@@ -50,6 +50,7 @@ namespace Viva.WebApp
                 newCustomer.PhoneNumber = txtPhone.Text;
                 newCustomer.HowContactYou = chklistContact.Text;
                 newCustomer.HearUs = dropHear.Text;
+                newCustomer.Active = true;
                 newCustomer.RoleId = 3;
                 // add new customer to databaes
                 this.Service.SaveCustomer(newCustomer);
@@ -67,6 +68,7 @@ namespace Viva.WebApp
                 txtSurburb.Text = "";
                 txtZipcode.Text = "";
                 txtPhone.Text = "";
+                lblContactError.Text = "";
             }
             if (isEmailExisted == true)
             {

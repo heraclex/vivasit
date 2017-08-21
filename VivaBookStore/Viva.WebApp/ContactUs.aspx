@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ContactUs.aspx.cs" Inherits="Viva.WebApp.ContactUs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    
-<div class="container">
+    <div class="container">
     <p style="color: #000000;"> 
-             <strong><i class="fa fa-map-marker"> We’re here to help, so don’t hesitate to get in touch – you can phone on the numbers below. You can also email us if it is most convenient for you.
+             <strong><i class="fa fa-map-marker"> We’re here to help, so don’t hesitate to get in touch – you can phone on the number below. You can also email us if it is convenient for you.
 <br></i></strong>
     <div class="row">
    
@@ -17,6 +17,7 @@
                 </div>
                 <div>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" class="control-label" runat="server" ErrorMessage="Please input your email!" ControlToValidate="txtEmail" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Pls input right email format" ControlToValidate="txtEmail" ForeColor="#CC0000" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </div>
             </div>
             <div class="form-group">

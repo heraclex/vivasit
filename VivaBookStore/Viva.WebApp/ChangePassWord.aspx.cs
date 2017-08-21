@@ -43,5 +43,7 @@ namespace Viva.WebApp
             }else { lblMessage.Text = "Wrong current Password"; }
             
         }
+
+       
     }
 }

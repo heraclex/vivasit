@@ -139,7 +139,7 @@
                                 <div class="form-group">
                                     <div class="col-md-8" style="text-align: left;">
                                         <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="Change Status" OnClick="btnSave_Click" />
-                                        
+                                        <a class="btn btn-default" href="ManageOrder.aspx">Cancel</a>
                                     </div>
 
 

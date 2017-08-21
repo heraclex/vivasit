@@ -84,60 +84,95 @@
 
                                 <!--User Name-->
                                 <div class="form-group">
-                                    <label>User Name</label>
+                                    <label>User Name</label> <asp:Label ID="Label1" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtUserName" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequirefieldEmail" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtUserName" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Password-->
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <asp:TextBox ID="txtPassword" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                    <label>Password</label><asp:Label ID="Label2" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                                    <asp:TextBox ID="txtPassword"  type="password" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPassword" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--EmailAddress-->
                                 <div class="form-group">
-                                    <label>Email Address</label>
+                                    <label>Email Address</label><asp:Label ID="Label3" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtEmail" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                                 </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtEmail" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
+                               <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Pls input right email format" ControlToValidate="txtEmail" ForeColor="#CC0000" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                    </div>
                                 <!--PhoneNumber-->
                                 <div class="form-group">
-                                    <label>Phone Number</label>
+                                    <label>Phone Number</label><asp:Label ID="Label4" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtPhoneNumber" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPhoneNumber" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--First Name-->
                                 <div class="form-group">
-                                    <label>Customer Name</label>
+                                    <label>Customer Name</label><asp:Label ID="Label5" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtFirstName" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtFirstName" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Last Name-->
                                 <div class="form-group">
-                                    <label>Last Name</label>
+                                    <label>Last Name</label><asp:Label ID="Label6" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtLastName" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtLastName" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                  <!--Address-->
                                 <div class="form-group">
-                                    <label>Address</label>
+                                    <label>Address</label><asp:Label ID="Label7" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtAddress" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtAddress" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                  <!--City-->
                                 <div class="form-group">
-                                    <label>City</label>
+                                    <label>City</label><asp:Label ID="Label8" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtCity" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtCity" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Surburb-->
                                 <div class="form-group">
-                                    <label>Surburb</label>
+                                    <label>Surburb</label><asp:Label ID="Label9" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtSurburb" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                                 </div>
-
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtSurburb" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
+                                </div>
+                                <!--zipcode-->
+                                <div class="form-group">
+                                    <label>Zipcode</label><asp:Label ID="Label11" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                                    <asp:TextBox ID="txtZipcode" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtZipcode" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
+                                </div>
                                 <!--Active-->
                                 <div class="form-group">
                                     <label>
                                         <asp:CheckBox ID="chkActive" runat="server" Checked="True" />
-                                        Active
+                                        Active 
                                     </label>
                                 </div>
                                 <!--Role-->
                                 <div class="form-group">
-                                    <label>Role</label>
+                                    <label>Role</label><asp:Label ID="Label10" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:DropDownList ID="ddRoles" class="form-control" ClientIDMode="Static" runat="server"></asp:DropDownList>
                                 </div>
 
@@ -145,7 +180,7 @@
                                 <div class="form-group">
                                     <div class="col-md-8" style="text-align: left;">
                                         <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="Save" OnClick="btnSave_Click" />
-                                        <a class="btn btn-default" href="ManageSuctomer.aspx">Cancel</a>
+                                        <a class="btn btn-default" href="ManageCustomer.aspx">Cancel</a>
                                     </div>
 
                                     <% // only diplay delete button in Edit Mode

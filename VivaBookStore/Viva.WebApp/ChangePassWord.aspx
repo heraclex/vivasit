@@ -8,7 +8,7 @@
         </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label">Current Password</label>
+            <label class="col-sm-2 control-label required">Current Password</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtCurrentPass" type="password" class="form-control" runat="server" ></asp:TextBox>
             </div>
@@ -17,7 +17,7 @@
             </div>
         </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">New Password</label>
+            <label class="col-sm-2 control-label required">New Password</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtPassword" type="password" class="form-control" runat="server" ></asp:TextBox>
             </div>
@@ -27,7 +27,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">Re-Password</label>
+            <label class="col-sm-2 control-label required">Re-Password</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtRePassword" type="password" class="form-control" runat="server" ></asp:TextBox>
             </div>
@@ -39,7 +39,9 @@
 
          <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button ID="btnChanePass" runat="server" Text="Change Password" OnClick="btnChanePass_Click"   />
+               
+                <asp:Button ID="btnChanePass"  class="btn btn-primary" runat="server" Text="Change Password" OnClick="btnChanePass_Click"   />
+                
             </div>
         </div>
     </form>

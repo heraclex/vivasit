@@ -6,8 +6,8 @@
         <table id="cart" class="table table-hover table-condensed">
             <thead>
                 <tr>
-                    <th style="width: 50%">Boock Name</th>
-                    <th style="width: 10%">Instock</th>
+                    <th style="width: 50%">Book Name</th>
+                    <th style="width: 10%">In stock</th>
                     <th style="width: 10%">Price</th>
                     <th style="width: 8%">Quantity</th>
                     <th style="width: 12%" class="text-center">Subtotal</th>
@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-5 control-label">PhoneNumber: </label>
+                                        <label class="col-sm-5 control-label">Phone Number: </label>
                                         <div class="col-sm-7">
                                             <p class="form-control-static"><%=this.CurrentCustomer.PhoneNumber %></p>
                                         </div>
@@ -114,7 +114,7 @@
                                 <table class="table table-bordered table-hover table-condensed">
                                     <thead>
                                         <tr>
-                                            <th style="width: 50%">Boock Name</th>
+                                            <th style="width: 50%">Book Name</th>
                                             <th style="width: 20%">Price</th>
                                             <th style="width: 20%">Quantity</th>
                                             <th style="width: 10%" class="text-center">Subtotal</th>
@@ -139,12 +139,17 @@
                                                 <p><span class="label label-success">$ <%=this.CurrentOrder.TotalPrice %></span></p>
                                             </td>
                                         </tr>
+                                         <tr style="font-size: 10px;">
+                                            <td colspan="4" class="text-right">The price is included 15% GST</td>
+                                            
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
+                        
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <asp:Button ID="btnSubmitOrder" class="btn btn-primary" runat="server" Text="Submit Order" OnClick="btnSubmitOrder_Click" />
                     </div>

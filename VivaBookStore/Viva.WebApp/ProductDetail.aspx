@@ -23,7 +23,7 @@
                          <div class="col-sm-10"><%=book.Description %></div>
                      </div><br />
                      <div class="form-group">
-                         <div class="col-sm-2">In STock: </div>
+                         <div class="col-sm-2">In stock: </div>
                          <div class="col-sm-10"><%=book.QuantityInUnit %></div>
                      </div><br />
                      <div class="form-group">

@@ -31,10 +31,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>BookName</th>
-                                    <th>AuthorName</th>
-                                    <th>CategoryName</th>
-                                    <th>NewRelease</th>
+                                    <th>Book Name</th>
+                                    <th>Author Name</th>
+                                    <th>Price</th>
+                                    <th>In stock</th>
+                                    <th>Category</th>
+                                    <th>New Release</th>
                                     <th>Edit</th>
                                 </tr>
                             </thead>
@@ -45,6 +47,8 @@
                                     <td><%=book.Id %></td>
                                     <td><%=book.BookName %></td>
                                     <td><%=book.AuthorName %></td>
+                                    <td>$<%=book.Price %></td>
+                                    <td><%=book.QuantityInUnit %></td>
                                     <td><%=this.Categories.First(x=>x.Id == book.CategoryId).CategoryName %></td>
                                     <td>
                                         <input type="checkbox" disabled checked="<%=book.NewRelease %>"></td>
@@ -84,28 +88,43 @@
                                 <asp:HiddenField ID="hfBookId" runat="server" />
                                 <!--Book Name-->
                                 <div class="form-group">
-                                    <label>Book Name</label>
+                                    <label>Book Name</label> <asp:Label ID="Label1" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtBookName" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                 <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequirefieldEmail" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtBookName" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Author Name-->
                                 <div class="form-group">
-                                    <label>Author Name</label>
+                                    <label>Author Name</label><asp:Label ID="Label2" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtAuthorName" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtAuthorName" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Description-->
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label>Description</label><asp:Label ID="Label3" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <textarea id="txtDescription" rows="4" clientidmode="Static" class="form-control" runat="server"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtDescription" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Price-->
                                 <div class="form-group">
-                                    <label>Price</label>
-                                    <asp:TextBox ID="txtPrice" ClientIDMode="Static" class="form-control" TextMode="Number" runat="server"></asp:TextBox>
+                                    <label>Price</label><asp:Label ID="Label4" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                                    <asp:TextBox ID="txtPrice" ClientIDMode="Static" class="form-control"  runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPrice" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Quantity-->
                                 <div class="form-group">
-                                    <label>Quantity</label>
+                                    <label>Quantity</label><asp:Label ID="Label5" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtQuantity" ClientIDMode="Static" class="form-control" TextMode="Number" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtQuantity" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--New Release-->
                                 <div class="form-group">
@@ -114,22 +133,28 @@
                                         New Release
                                     </label>
                                 </div>
+                               
                                 <!--Publisher-->
                                 <div class="form-group">
-                                    <label>Publisher</label>
+                                    <label>Publisher</label><asp:Label ID="Label6" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtPublisher" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPublisher" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
                                 </div>
                                 <!--Published Year-->
                                 <div class="form-group">
-                                    <label>Published Year</label>
+                                    <label>Published Year</label><asp:Label ID="Label7" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:TextBox ID="txtPublishedYear" TextMode="Number" ClientIDMode="Static" class="form-control" runat="server"></asp:TextBox>
                                 </div>
-
+                                <div class="form-group">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" class="control-label" runat="server" ErrorMessage="Required field!" ControlToValidate="txtPublishedYear" ForeColor="#CC0000" ></asp:RequiredFieldValidator>
+                                </div>
                                 <!--ImageUrl-->
                                 <div class="form-group">
-
+                                    <label>Image</label><asp:Label ID="Label8" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <!--Generate image in Edit Mode-->
-                                    <% var imgLabel = "Image";
+                                    <% var imgLabel = "";
                                         if (this.CurrentBook.Id > 0 && this.CurrentBook.Picture != null)
                                         {
                                             imgLabel = "Chose another image";
@@ -140,10 +165,11 @@
                                     <label><%=imgLabel %></label>
                                     <asp:FileUpload ID="fileUploadImage" ClientIDMode="Static" runat="server" />
                                 </div>
+                               
 
                                 <!--Category-->
                                 <div class="form-group">
-                                    <label>Category</label>
+                                    <label>Category</label><asp:Label ID="Label9" runat="server" Text="*" ForeColor="Red"></asp:Label>
                                     <asp:DropDownList ID="ddCategory" class="form-control" ClientIDMode="Static" runat="server"></asp:DropDownList>
                                 </div>
                                 <!--Buttons-->

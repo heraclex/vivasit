@@ -319,7 +319,7 @@ namespace Viva.Service
             {
                 return context.Orders.Where(x =>
                 x.CustomerId == customerId
-                && (x.OrderStatusId == (int)OrderStatus.Processing || x.OrderStatusId == (int)OrderStatus.Complete)
+                && (x.OrderStatusId == (int)OrderStatus.Processing || x.OrderStatusId == (int)OrderStatus.Complete || x.OrderStatusId == (int)OrderStatus.Deliveried)
                 && x.PaymentStatusId == (int)PaymentStatus.Paid).ToList();
             }
         }

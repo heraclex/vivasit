@@ -75,6 +75,7 @@ namespace Viva.WebApp.Admin
             txtEmail.Text = this.CurrentCustomer.EmailAddress;
             txtPassword.Text = this.CurrentCustomer.Password;
             txtUserName.Text = this.CurrentCustomer.UserName;
+            txtZipcode.Text = this.CurrentCustomer.Zipcode;
             txtSurburb.Text = this.CurrentCustomer.Surburb;
             txtPhoneNumber.Text = this.CurrentCustomer.PhoneNumber;
 
@@ -107,6 +108,7 @@ namespace Viva.WebApp.Admin
             customer.Password = txtPassword.Text;
             customer.UserName = txtUserName.Text;
             customer.Surburb = txtSurburb.Text;
+            customer.Zipcode = txtZipcode.Text;
             customer.PhoneNumber = txtPhoneNumber.Text;
             customer.RoleId = Convert.ToInt32(ddRoles.SelectedValue);
 

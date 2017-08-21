@@ -93,20 +93,23 @@ namespace Viva.WebApp
         }
 
         protected void btnSubmitOrder_Click(object sender, EventArgs e)
-        {
-            this.CurrentOrder.CreatedDate = DateTime.Now;
-            this.CurrentOrder.OrderStatusId = (int)OrderStatus.Complete;
-            this.CurrentOrder.PaymentStatusId = (int)PaymentStatus.Paid;
-            this.service.UpdateOrder(this.CurrentOrder);
-
-            // Update book Quantity In Unit
-            foreach (var orderItem in this.CurrentOrder.OrderItems)
+        { if (this.CurrentOrder.TotalPrice>0)
             {
-                var book = this.service.GetBookByID(orderItem.BookId);
-                book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
-                this.service.SaveBook(book);
-            }
+                this.CurrentOrder.CreatedDate = DateTime.Now;
+                this.CurrentOrder.OrderStatusId = (int)OrderStatus.Complete;
+                this.CurrentOrder.PaymentStatusId = (int)PaymentStatus.Paid;
+                this.service.UpdateOrder(this.CurrentOrder);
 
+                // Update book Quantity In Unit
+                foreach (var orderItem in this.CurrentOrder.OrderItems)
+                {
+                    var book = this.service.GetBookByID(orderItem.BookId);
+                    book.QuantityInUnit = book.QuantityInUnit - orderItem.Quantity;
+                    this.service.SaveBook(book);
+                }
+
+                Response.Redirect("CustomerOrders.aspx");
+            }
             Response.Redirect("Default.aspx");
         }
 

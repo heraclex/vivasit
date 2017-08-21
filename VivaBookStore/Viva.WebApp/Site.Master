@@ -68,7 +68,7 @@
                 <!--Search Form-->
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" id="searchkeyword" class="form-control" style="min-width: 400px" placeholder="Search title/author/description">
+                        <input type="text" id="searchkeyword" class="form-control" style="min-width: 400px" placeholder="Search">
                     </div>
 
                     <button id="btnSubmitSearch" type="submit" class="btn btn-default">Search</button>
@@ -94,7 +94,7 @@
                             displayLogin = "none";
                             displayLogout = "block";
                             var customer = (Viva.DAL.Entities.Customer)HttpContext.Current.Session["currentuser"];
-                            customerFirstName = customer.FirstName;
+                            customerFirstName = customer.UserName;
                             customerID = customer.Id;
                         } %>
 
@@ -174,7 +174,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Viva Corp 2017</p>
+                    <p>Copyright &copy; Viva Corp 2017_Designed by Nguyen Thi Thanh Thao 21700264</p>
                 </div>
             </div>
         </footer>

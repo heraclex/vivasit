@@ -47,9 +47,11 @@ namespace Viva.WebApp
                 case OrderStatus.Processing:
                     return "Processing";
                 case OrderStatus.Complete:
-                    return "Complete";
+                    return "Completed";
                 case OrderStatus.Cancelled:
                     return "Cancelled";
+                case OrderStatus.Deliveried:
+                    return "Deliveried";
                 default:
                     return string.Empty;
             }

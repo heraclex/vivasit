@@ -3,7 +3,7 @@
     <form class="form-horizontal" runat="server">
         <asp:HiddenField ID="hiddenFieldCustomerId" runat="server" />
         <div class="form-group">
-            <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblMessage" runat="server" ForeColor="#0033CC"></asp:Label>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label required">Email</label>
@@ -13,7 +13,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">User Name</label>
+            <label class="col-sm-2 control-label required">User Name</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtUsename" class="form-control"  runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -22,7 +22,7 @@
 
         
          <div class="form-group">
-            <label class="col-sm-2 control-label">First Name</label>
+            <label class="col-sm-2 control-label required">First Name</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtFirstName" class="form-control" runat="server" ReadOnly="True" ></asp:TextBox>
             </div>
@@ -32,7 +32,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">SurName</label>
+            <label class="col-sm-2 control-label required">SurName</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtSurName" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -42,7 +42,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">Street Address</label>
+            <label class="col-sm-2 control-label required">Street Address</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtStreet" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -52,7 +52,7 @@
         </div>
                  
          <div class="form-group">
-            <label class="col-sm-2 control-label">City</label>
+            <label class="col-sm-2 control-label required">City</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtCity" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">Surburb</label>
+            <label class="col-sm-2 control-label required">Surburb</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtSurburb" class="form-control" runat="server" ReadOnly="True" ></asp:TextBox>
             </div>
@@ -72,7 +72,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">Zipcode</label>
+            <label class="col-sm-2 control-label required">Zipcode</label>
            <div class="col-sm-4">
                 <asp:TextBox ID="txtZipcode" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -82,7 +82,7 @@
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">Phone Contact</label>
+            <label class="col-sm-2 control-label required">Phone Contact</label>
             <div class="col-sm-4">
                 <asp:TextBox ID="txtPhone" class="form-control" runat="server" ReadOnly="True"></asp:TextBox>
             </div>
@@ -95,7 +95,7 @@
       
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">How did you hear about us?</label>
+            <label class="col-sm-2 control-label required">How did you hear about us?</label>
             <div class="col-sm-2">
                 <asp:DropDownList CssClass="form-control" ID="dropHear" runat="server" ReadOnly="True">
                     <asp:ListItem>Website</asp:ListItem>
@@ -106,7 +106,7 @@
         </div>  
         
          <div class="form-group">
-            <label class="col-sm-2 control-label">How can we contact you?</label>
+            <label class="col-sm-2 control-label required">How can we contact you?</label>
             <div class="col-sm-10">
                 <asp:CheckBoxList ID="chklistContact" runat="server" ReadOnly="True">
                             <asp:ListItem Value="Phone">Phone</asp:ListItem>
@@ -121,7 +121,7 @@
         
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button ID="btnSubmit" runat="server" Text="Save" OnClick="btnSubmit_Click"  Visible="False" />
+                <asp:Button ID="btnSubmit" class="btn btn-primary" runat="server" Text="Save" OnClick="btnSubmit_Click"  Visible="False" />
             </div>
         </div>
         <div class="form-group">

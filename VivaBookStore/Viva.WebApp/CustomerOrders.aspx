@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-5 control-label">PhoneNumber: </label>
+                    <label class="col-sm-5 control-label">Phone Number: </label>
                     <div class="col-sm-7">
                         <p class="form-control-static"><%=this.CurrentCustomer.PhoneNumber %></p>
                     </div>
@@ -36,12 +36,12 @@
         <asp:GridView ID="GridViewCustomerOrders" runat="server" CssClass="table table-bordered table-hover"
             AutoGenerateColumns="false" ShowFooter="true">
             <Columns>
-                <asp:TemplateField HeaderText="ID">
+                <asp:TemplateField HeaderText="Order ID">
                     <ItemTemplate>
                         <asp:Label ID="lblID" runat="server" Text='<%#Eval("Id")%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="CreatedDate">
+                <asp:TemplateField HeaderText="Created Date">
                     <ItemTemplate>
                         <asp:Label ID="lblCreatedDate" runat="server" Text='<%#Eval("CreatedDate")%>'></asp:Label>
                     </ItemTemplate>
@@ -51,11 +51,16 @@
                         <asp:Label ID="lblOrderStatus" runat="server" Text='<%#this.GetOrderStatus(Eval("OrderStatusId").ToString())%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Payment Status">
+                <asp:TemplateField HeaderText="Total Price">
+                    <ItemTemplate>
+                        <asp:Label ID="lblTotalprice" runat="server" Text='<%#Eval("TotalPrice")%>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--<asp:TemplateField HeaderText="Payment Status">
                     <ItemTemplate>
                         <asp:Label ID="lblPaymentStatus" runat="server" Text='<%#this.GetPaymentStatus(Eval("PaymentStatusId").ToString())%>'></asp:Label>
                     </ItemTemplate>
-                </asp:TemplateField>
+                </asp:TemplateField>--%>
                 <asp:TemplateField HeaderText="Detail">
                     <ItemTemplate>
                         <a class="btn btn-primary btn-xs" href="CustomerOrders.aspx?viewdetailorderId=<%#Eval("Id") %>">Detail</a>
@@ -67,7 +72,7 @@
             {%>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Order (ID:<%=this.SelectedOrder.Id %>) Detail</h3>
+                <h3 class="panel-title">The detail of Order ID: <%=this.SelectedOrder.Id %></h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -75,7 +80,7 @@
                         <table class="table table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th style="width: 50%">Boock Name</th>
+                                    <th style="width: 50%">Book Name</th>
                                     <th style="width: 20%">Price</th>
                                     <th style="width: 20%">Quantity</th>
                                     <th style="width: 10%" class="text-center">Subtotal</th>
